@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dragon Parties - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="test.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="page-header">
+            <img src="Assets/drexelLogoWhite.png" alt="Drexel Logo" class="drexel-logo">
+            <h1 class="title">DRAGON PARTIES</h1>
+        </div>
+        <div class="login-container">
+            <div class="login-box">
+                <!-- Login Form -->
+                <div>
+                  <ul id="progressbar" style="display: none;">
+                    <li class="active">Personal Details</li>
+                    <li>Credentials</li>
+                    <li>Verification</li>
+                  </ul>
+              </div>
+                <form id="loginForm">
+                    <h2 class="login-title">LOGIN</h2>
+                    <input type="email" id="email" placeholder="Enter your drexel email id" required>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                    <button type="submit">LOGIN</button>
+                    <p class="new-user">New User? <a href="#" id="showCreateUserForm1">Click Here.</a></p>
+                </form>
+
+                <!-- User Creation Form 1 -->
+                <form id="createUserForm1" class="form-content" style="display: none;">
+                  <h2 class="login-title">REGISTER</h2>
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                    <input type="text" id="username" placeholder="Dragon Party Username" required>
+                    <select id="gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <button type="button" id="nextToForm2">Next</button>
+                </form>
+
+                <!-- User Creation Form 2 -->
+                <form id="createUserForm2" class="form-content" style="display: none;">
+                  <h2 class="login-title">REGISTER</h2>
+                    <input type="email" id="drexelEmail" placeholder="Drexel Email" required>
+                    <input type="password" id="password1" placeholder="Password" required>
+                    <input type="password" id="password2" placeholder="Re-enter Password" required>
+                    <button type="button" id="getCode">Get Code</button>
+                </form>
+
+                <!-- OTP Form -->
+                <form id="otpForm" class="form-content" style="display: none;">
+                    <input type="text" id="otp" placeholder="Enter OTP" required>
+                    <button type="submit" id="verifyOtp">Verify and Sign in</button>
+                </form>
+
+                <!-- Back Button (common to all forms except the first one) -->
+                <button id="backButton" style = "display: none; "type="button">&lt;</button>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -2,16 +2,17 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #121212; /* Dark background for contrast */
     color: white;
 }
 
 /* Navigation bar styling */
 .navbar {
+    font-weight: bold;
     display: flex;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     background: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
 }
 
@@ -21,7 +22,7 @@ body, html {
 }
 
 .navbar-logo img {
-    height: 3rem; /* Adjust the logo size */
+    height: 2.5rem; /* Adjust the logo size */
 }
 
 .navbar-links {
@@ -37,11 +38,15 @@ body, html {
 .navbar-links a {
     color: white;
     text-decoration: none;
+    font-size: 1.05rem;
     padding: 0.5rem 1rem;
     transition: color 0.3s ease;
 }
+.navbar-links a:hover {
+    color: #0071e2; /* Gold color for active/hover state */
 
-.navbar-links a:hover, .navbar-links a.active {
+}
+ .navbar-links a.active {
     color: #FFD700; /* Gold color for active/hover state */
 }
 

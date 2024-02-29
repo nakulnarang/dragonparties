@@ -1,0 +1,89 @@
+.featured-events {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.featured-events h2,.map-container h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.event-card {
+    flex: 0 1 calc(20% - 1rem); 
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #333; /* Dark background for the text */
+    color: white; /* Text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items for better look */
+    padding: 0.2rem; /* Padding around the content */
+    margin: 1rem;
+}
+
+.event-card img {
+    border-radius: 1rem;
+    width: 100%; /* Make the image full width of the card */
+    aspect-ratio: 1 / 1; /* Makes the image square */
+    object-fit: cover; /* Ensures the image covers the square area */
+}
+
+.event-card .event-info {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.event-card .event-info h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem; /* Adjust font size as needed */
+}
+
+.event-card .event-info p {
+    margin: 0;
+    font-size: 0.9rem; /* Adjust font size as needed */
+}
+
+.event-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        flex: 0 1 100%; /* Full width cards on smaller screens */
+    }
+}
+
+/* Google Maps container styling */
+
+.map-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the child horizontally */
+    align-items: center; /* Center the child vertically */
+    width: 100%; /* Take full width to center content */
+    margin: 2rem 0; /* Adjust margin as needed */
+}
+
+.map-container h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.map-container #map {
+    position: relative;
+    width: 50%; /* Adjust width as needed */
+    height: 400px; /* Adjust height as needed */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: url('../img/map.png') center/cover no-repeat; /* Ensure the path is correct */
+    
+}
+

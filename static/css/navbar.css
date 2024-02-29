@@ -1,0 +1,48 @@
+/* Base styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: #121212; /* Dark background for contrast */
+    color: white;
+}
+
+/* Navigation bar styling */
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.7); /* Slightly transparent black */
+}
+
+.navbar-logo {
+    flex-shrink: 0; /* Prevent logo from shrinking */
+    margin-right: 1rem; /* Add space between the logo and the text */
+}
+
+.navbar-logo img {
+    height: 3rem; /* Adjust the logo size */
+}
+
+.navbar-links {
+    list-style-type: none;
+    display: flex;
+    margin-left: -1rem; /* Negate the first item margin */
+}
+
+.navbar-links li {
+    margin-left: 1rem; /* Space between navigation items */
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-links a:hover, .navbar-links a.active {
+    color: #FFD700; /* Gold color for active/hover state */
+}
+
+/* Add other styles for featured events, map container, and media queries as before */

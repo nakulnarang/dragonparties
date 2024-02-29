@@ -82,8 +82,20 @@ body {
       border-radius: 5px;
       cursor: pointer;
   }
-  
-  
+  .login-btn {
+    display: inline-block; /* or 'block' depending on your layout */
+    text-align: center;
+    width: 20%;
+    padding: 10px;
+    margin: 10px -10px;
+    background-color: #003366; /* Drexel blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+}
+
   /* Hover effect for all buttons */
   #loginForm button:hover,
   #createUserForm1 button:hover,
@@ -203,3 +215,4 @@ body {
 	background: #f2ca00;
 	color: white;
 }
+

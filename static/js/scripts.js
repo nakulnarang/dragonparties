@@ -1,6 +1,6 @@
 var animationSpeed = 100;
 function setProgress(stepIndex) {
-    // Animate the progress bar
+
     $("#progressbar li").eq(stepIndex).addClass("active").hide().fadeIn(600);
 }
 
@@ -23,8 +23,8 @@ $(document).ready(function() {
         $('#createUserForm1').fadeOut(animationSpeed, function() {
             $('#createUserForm2').fadeIn(animationSpeed);
         });
-         // Reset the progress bar for step 1
-        setProgress(1); // Then set it for step 2
+        
+        setProgress(1);
     });
 
     $('#getCode').click(function() {
@@ -32,7 +32,7 @@ $(document).ready(function() {
             $('#otpForm').fadeIn(animationSpeed);
         });
 
-        setProgress(2); // Then set it for step 3
+        setProgress(2); 
     });
 
     $('#backButton').click(function() {
@@ -54,13 +54,12 @@ $(document).ready(function() {
                 $('#progressbar').fadeOut(animationSpeed);
                 $('#loginForm').fadeIn(animationSpeed);
             });
-            // No need to reset or set progress because we're hiding the progress bar
+            
         }
     });
 
-    // Handling form submissions to prevent page reloads
+    
     $('form').submit(function(e) {
         e.preventDefault();
-        // Add form handling logic here (AJAX calls, form validation, etc.)
     });
 });

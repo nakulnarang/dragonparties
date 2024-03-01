@@ -2,6 +2,13 @@ var animationSpeed = 100;
 function setProgress(stepIndex) {
 
     $("#progressbar li").eq(stepIndex).addClass("active").hide().fadeIn(600);
+    if(stepIndex == 0){
+        $('#backButton').hide();
+      
+    }
+    else{
+        $('#backButton').show();
+    }
 }
 
 function resetProgress(stepIndex) {
@@ -9,16 +16,8 @@ function resetProgress(stepIndex) {
 }
 
 $(document).ready(function() {
-    $('#showCreateUserForm1').click(function(e) {
-        e.preventDefault();
-        $('#loginForm').fadeOut(animationSpeed, function() {
-            $('#createUserForm1').fadeIn(animationSpeed);
-            $('#backButton').fadeIn(animationSpeed);
-            $('#progressbar').fadeIn(animationSpeed);
-        });
-        setProgress(0);
-    });
-
+    setProgress(0);
+   
     $('#nextToForm2').click(function() {
         $('#createUserForm1').fadeOut(animationSpeed, function() {
             $('#createUserForm2').fadeIn(animationSpeed);

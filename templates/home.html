@@ -9,24 +9,41 @@
             <img src="{{ url_for('static', filename='img/eventcards/card1.png') }}" alt="Neon Party">
             <div class="event-info">
                 <h3>Neon Party</h3>
-                <p>9 Feb, Friday | Doors open 10:30PM</p>
-                <p>3226 Powelton Ave</p>
+                <p>9 Feb, Friday</p>
+           
+            </div>
+            <div class="more-info" style="display: none;"> <!-- Hidden by default -->
+                <p>Additional event details...</p>
+                <p>Additional event details...</p>
+                <p>Additional event details...</p>
+                <button class="rsvp-btn">RSVP</button>
             </div>
         </div>
         <div class="event-card">
             <img src="{{ url_for('static', filename='img/eventcards/card2.png') }}" alt="Mardi Gras Madness">
             <div class="event-info">
                 <h3>Mardi Gras Madness</h3>
-                <p>15 Feb, Thursday | Doors open 10 PM</p>
-                <p>Some Venue Address</p>
+                <p>15 Feb, Thursday</p>
+            </div>
+            <div class="more-info" style="display: none;"> <!-- Hidden by default -->
+                <p>Additional event details...</p>
+                <p>Additional event details...</p>
+                <p>Additional event details...</p>
+                <button class="rsvp-btn">RSVP</button>
             </div>
         </div>
         <div class="event-card">
             <img src="{{ url_for('static', filename='img/eventcards/card3.png') }}" alt="Drake Night">
             <div class="event-info">
                 <h3>Drake Night</h3>
-                <p>22 Feb, Thursday | Tickets start at $10</p>
-                <p>Another Venue Address</p>
+                <p>22 Feb, Thursday</p>
+             
+            </div>
+            <div class="more-info" style="display: none;"> <!-- Hidden by default -->
+                <p>Additional event details...</p>
+                <p>Additional event details...</p>
+                <p>Additional event details...</p>
+                <button class="rsvp-btn">RSVP</button>
             </div>
         </div>
     </div>
@@ -35,4 +52,7 @@
         <div id="map">
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../static/js/home.js"></script>
+        
 {% endblock %}

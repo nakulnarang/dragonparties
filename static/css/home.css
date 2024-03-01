@@ -18,62 +18,105 @@ body, html {
 }
 
 .event-card {
-    flex: 0 1 calc(20% - 1rem); 
-    border-radius: 1rem;
+    transition: all 0.5s ease;
+    position: relative;
+    flex: 0 1 calc(20% - 1rem); /* Adjust the size and spacing of the cards */
+    border-radius: 0.5rem; /* Smoother border radius for a softer look */
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #333; /* Dark background for the text */
-    color: white; /* Text color */
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: #fff; /* White text for better contrast on dark background */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items for better look */
-    padding: 0.2rem; /* Padding around the content */
-    margin: 1rem;
+    align-items: center;
+    padding: 0.5rem; /* More padding for better spacing */
+    margin: 1rem; /* Ensure consistent spacing around cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
+
 .event-card img {
-    border-radius: 1rem;
-    width: 100%; /* Make the image full width of the card */
-    aspect-ratio: 1 / 1; /* Makes the image square */
-    object-fit: cover; /* Ensures the image covers the square area */
+    border-radius: 0.5rem; /* Consistent with card border radius */
+    width: 100%; /* Full width of the card */
+    aspect-ratio: 1 / 1; /* Wider aspect ratio for the image */
+    object-fit: cover;
 }
 
 .event-card .event-info {
-    padding: 0.5rem;
     text-align: center;
+    width: 100%; /* Ensure text aligns with the width of the card */
 }
 
 .event-card .event-info h3 {
-    margin: 0.5rem 0;
-    font-size: 1.2rem; /* Adjust font size as needed */
+    font-size: 1.1rem; /* Slightly larger font size for the name */
+    font-weight: bold; /* Bold font weight for the name */
+    color: #007bff; /* A distinct color for the event name */
+    margin: 0.5rem 0 0.2rem; /* Adjusted margin for tighter spacing */
 }
 
 .event-card .event-info p {
-    margin: 0;
-    font-size: 0.9rem; /* Adjust font size as needed */
+    font-size: 0.9rem; /* Smaller font size for the date */
+    font-weight: 300; /* Lighter font weight for the date */
+    color: #ffffff; /* Subtle color for the date */
+    margin: 0; /* Remove margin for a compact look */
 }
 
 .event-card:hover {
-    transform: translateY(-0.5rem);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
 }
 
 @media (max-width: 768px) {
     .event-card {
-        flex: 0 1 100%; /* Full width cards on smaller screens */
+        flex: 0 1 100%; /* Full width cards on smaller screens for better readability */
     }
 }
 
-/* Google Maps container styling */
+.event-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.6);
+    z-index: 1050; /* High enough to be above the blurred content */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%; /* Adjust based on your design */
+    max-width: 300px; /* Adjust based on your design */
+}
 
+
+.more-info {
+    display: none; /* Hide additional content by default */
+    transition: opacity 0.5s ease; /* Smooth transition for fading in/out */
+}
+
+.event-card.expanded .more-info {
+    display: block; /* Show additional content when card is expanded */
+    opacity: 1; /* Make additional content fully visible */
+}
+
+.content-wrapper {
+    position: relative; 
+    z-index: 1; 
+}
+.content-wrapper.blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease; /* Smooth transition for the blur effect */
+    z-index: 2; /* Ensure it's below the expanded card */
+    position: relative; /* Needed for z-index to take effect */
+}
+.content-wrapper:not(.blurred) {
+    filter: none;
+}
 .map-container {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center the child horizontally */
-    align-items: center; /* Center the child vertically */
-    width: 100%; /* Take full width to center content */
-    margin: 2rem 0; /* Adjust margin as needed */
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    margin: 2rem 0; 
 }
 
 .map-container h2 {
@@ -84,11 +127,11 @@ body, html {
 
 .map-container #map {
     position: relative;
-    width: 50%; /* Adjust width as needed */
-    height: 400px; /* Adjust height as needed */
+    width: 50%; 
+    height: 400px; 
     border-radius: 0.5rem;
     overflow: hidden;
-    background: url('../img/map.png') center/cover no-repeat; /* Ensure the path is correct */
+    background: url('../img/map.png') center/cover no-repeat; 
     
 }
 

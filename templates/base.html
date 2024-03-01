@@ -7,6 +7,7 @@
 
     <title>Dragon Parties - Home</title>
     <link rel="stylesheet" href="../static/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <!-- Other head elements like CSS files, favicon, etc. -->
 </head>
@@ -22,28 +23,28 @@
             <li><a href="/viewEvents">View Events</a></li>
             <!-- Add other navigation links as necessary -->
         </ul>
+        <div class="user-dropdown">
+          <button class="user-icon">
+            <i class="fas fa-user"></i> <!-- Font Awesome User Icon -->
+            <i class="fas fa-chevron-down"></i>
+        </button>
+          <div class="dropdown-content">
+              <a href="/profile">Profile</a>
+              <a href="/">Sign Out</a>
+          </div>
+      </div>
         <!-- Add more navigation bar content as needed -->
     </nav>
+    <div class="content-wrapper"> <!-- This div wraps the content that will be blurred -->
+      {% block content %}
+      {% endblock %}
+  </div>
 
-    <!-- Content area where other pages will insert their unique content -->
-    {% block content %}
-    {% endblock %}
 
     <!-- Add your scripts at the bottom of the page -->
     <!-- Example: Google Maps API script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-          var links = document.querySelectorAll('#navbar-links a');
-          var currentUrl = window.location.pathname;
-          console.log(currentUrl);
-          links.forEach(function(link) {
-            console.log(link.getAttribute('href'));
-              if (link.getAttribute('href') === currentUrl) {
-                  link.classList.add('active');
-              }
-          });
-      });
-  </script>
+    <script src="../static/js/navbar.js"></script>
+
   
 </body>
 </html>

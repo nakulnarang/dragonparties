@@ -1,5 +1,5 @@
 function fetchEvents() {
-    // Simulating fetching events data
+    // Dummy data for now later implemennt fetching from the server
     const events = [
         { title: 'Event 1', date: '2024-03-01', description: 'Description of Event 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
         { title: 'Event 2', date: '2024-03-15', description: 'Description of Event 2. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.' },
@@ -11,8 +11,7 @@ function fetchEvents() {
         { title: 'Event 8', date: '2024-06-20', description: 'Description of Event 5. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent.' },
         { title: 'Event 9', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
         { title: 'Event 10', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
-        
-        // Add more dummy events as needed
+        { title: 'Event 11', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
     ];
 
     const eventsGrid = document.getElementById('eventsGrid');
@@ -26,17 +25,21 @@ function createEventCard(event, index) {
     const card = document.createElement('div');
     card.className = 'event-card';
 
-    // Define a variable for the article class
-    let articleClass = 'card__orange'; // Default class
+    const randomImageNumber = Math.floor(Math.random() * 8) + 1; // 1 to 9
+    const imageName = `card${randomImageNumber}.png`;
+    console.log(imageName);
 
-    // Adjust the articleClass based on the index
-    if ((index + 1) % 3 === 1) { // First column
-        articleClass = ''; // orange card
-    } else if ((index + 1) % 3 === 2) { // Second column
-        articleClass = 'card__green'; // green card
+
+    let articleClass = 'card__orange'; 
+
+
+    if ((index + 1) % 3 === 1) { 
+        articleClass = '';  // no class is default blue 
+    } else if ((index + 1) % 3 === 2) {
+        articleClass = 'card__green'; 
         
-    } else { // Third column
-        articleClass = 'card__orange'; // blue card
+    } else { 
+        articleClass = 'card__orange'; 
    
     }
 
@@ -47,7 +50,7 @@ function createEventCard(event, index) {
         <div class="card__scale-2"></div>
         <div class="card__default-content">
             <div class="card__shape-1">
-                <img src="../static/img/eventcards/card1.png" alt="${event.title}">
+                <img src="../static/img/eventcards/${imageName}" alt="${event.title}">
             </div>
             <div class="card__data">
                 <h2 class="card__title">${event.title}</h2>
@@ -61,11 +64,15 @@ function createEventCard(event, index) {
                 <li>Venue: </li>
                 <li>Date:</li>
                 <li>Guest Count:</li>
-                <button class="card__rsvp-button">RSVP</button>
+                <button class="card__rsvp-button" id = "rsvpbtn">RSVP</button>
             </ul>
         </div>
     </article>
 `;
+const rsvpButton = card.querySelector('.card__rsvp-button');
+rsvpButton.addEventListener('click', function() {
+    console.log('RSVP clicked for:', event.title, 'Index:', index);
+});
 
     return card;
 }
@@ -73,6 +80,7 @@ function createEventCard(event, index) {
 
 document.addEventListener('DOMContentLoaded', function() {
     fetchEvents();
+    console.log('Events fetched');
 });
 
 

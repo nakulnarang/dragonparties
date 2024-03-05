@@ -2,107 +2,14 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    padding: 2rem;
+    gap: 3rem;
+    padding: 1rem;
 }
 
 .featured-events h2,.map-container h2 {
     width: 100%;
     text-align: center;
     margin-bottom: 1rem;
-}
-
-.event-card {
-    transition: all 0.5s ease;
-    position: relative;
-    flex: 0 1 calc(20% - 1rem); /* Adjust the size and spacing of the cards */
-    border-radius: 0.5rem; /* Smoother border radius for a softer look */
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    color: #fff; /* White text for better contrast on dark background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5rem; /* More padding for better spacing */
-    margin: 1rem; /* Ensure consistent spacing around cards */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-
-.event-card img {
-    border-radius: 0.5rem; /* Consistent with card border radius */
-    width: 100%; /* Full width of the card */
-    aspect-ratio: 1 / 1; /* Wider aspect ratio for the image */
-    object-fit: cover;
-}
-
-.event-card .event-info {
-    text-align: center;
-    width: 100%; /* Ensure text aligns with the width of the card */
-}
-
-.event-card .event-info h3 {
-    font-size: 1.1rem; /* Slightly larger font size for the name */
-    font-weight: bold; /* Bold font weight for the name */
-    color: #007bff; /* A distinct color for the event name */
-    margin: 0.5rem 0 0.2rem; /* Adjusted margin for tighter spacing */
-}
-
-.event-card .event-info p {
-    font-size: 0.9rem; /* Smaller font size for the date */
-    font-weight: 300; /* Lighter font weight for the date */
-    color: #ffffff; /* Subtle color for the date */
-    margin: 0; /* Remove margin for a compact look */
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
-}
-
-@media (max-width: 768px) {
-    .event-card {
-        flex: 0 1 100%; /* Full width cards on smaller screens for better readability */
-    }
-}
-
-.event-card.expanded {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.6);
-    z-index: 1050; /* High enough to be above the blurred content */
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%; /* Adjust based on your design */
-    max-width: 300px; /* Adjust based on your design */
-}
-
-
-.more-info {
-    display: none; /* Hide additional content by default */
-    transition: opacity 0.5s ease; /* Smooth transition for fading in/out */
-}
-
-.event-card.expanded .more-info {
-    display: block; /* Show additional content when card is expanded */
-    opacity: 1; /* Make additional content fully visible */
-}
-
-.content-wrapper {
-    position: relative; 
-    z-index: 1; 
-}
-.content-wrapper.blurred {
-    filter: blur(5px);
-    transition: filter 0.3s ease; /* Smooth transition for the blur effect */
-    z-index: 2; /* Ensure it's below the expanded card */
-    position: relative; /* Needed for z-index to take effect */
-}
-.content-wrapper:not(.blurred) {
-    filter: none;
 }
 .map-container {
     text-align: center;

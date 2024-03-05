@@ -75,6 +75,7 @@ a {
   width: 300px;
   transition: transform 0.15s ease;
 }
+
 .card__shape-1 {
   /* position: relative; */
   width: 148px;
@@ -228,6 +229,38 @@ a {
 
 .card__rsvp-button:hover {
   background-color: #0056b3; /* Darker shade on hover */
+}
+.card__rsvp-button:disabled {
+  cursor: default; 
+  opacity: 1; 
+}
+
+.card__rsvp-button:disabled:hover {
+  background-color: #808080;
+}
+
+.card__sticker {
+  position: absolute;
+  top: -7px; /* Adjust as needed */
+  left: -15px; /* Adjust as needed to extend beyond the card's boundary */
+  /* background-color: rgba(255, 217, 0, 0);  */
+  color: #fff; /* White text */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border-radius: 5px;
+  font-size: 0.8rem;
+  z-index: 1000; /* Ensure the sticker is above all other card elements */
+  /* transform: rotate(-45deg); */
+  white-space: nowrap; /* Prevent the text from wrapping */
+}
+.event-card {
+  position: relative; /* This makes the absolute positioning of the sticker relative to the card */
+  overflow: visible;
+}
+
+.card__sticker img {
+  width: 60px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  /* Additional styling as needed */
 }
 
 

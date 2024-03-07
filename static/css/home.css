@@ -11,7 +11,8 @@
 
 }
 .wrapper {
-    height: 100vh;
+    height: auto; /* Change from 100vh to auto */
+    min-height: 100vh;
     width: 100vw;
     /* height: 700px;
     width: 100%; */
@@ -19,19 +20,17 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background: #000000; 
-    /* overflow: visible; */
-
 }
 .neon-wrapper:nth-child(1)
 {
-    margin-top: -50px;
+    margin-top: 50px;
 }
 
 .neon-wrapper:nth-child(2)
 {
-    margin-bottom: 200px;
+    margin-bottom: 50px;
 }
 
 /* .neon-wrapper:nth-child(1) {
@@ -60,13 +59,20 @@
     text-align: left; 
 } */
 
+@font-face {
+    font-family: 'amithen_extraregular';
+    src: url('../fonts/amithen_extra-webfont.woff2') format('woff2'),
+         url('../fonts/amithen_extra-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 .txt1 {
     color: #ffffff;
     background:#000000;
-    font-size:80px;
+    font-size:60px;
     font-weight: bold;
-    font-family: Arial;
     text-transform: uppercase;
 }
 .txt1::before {
@@ -78,9 +84,8 @@
 .txt2 {
     color: #ffffff;
     background:#000000;
-    font-size:40px;
+    font-size:30px;
     font-weight: bold;
-    font-family: Arial;
     text-transform: uppercase;
 }
 .txt2::before {
@@ -92,9 +97,8 @@
 .txt3 {
     color: #ffffff;
     background:#000000;
-    font-size:80px;
+    font-size:60px;
     font-weight: bold;
-    font-family: Arial;
     text-transform: uppercase;
 }
 .txt3::before {
@@ -106,9 +110,8 @@
 .txt4 {
     color: #ffffff;
     background:#000000;
-    font-size:40px;
+    font-size:30px;
     font-weight: bold;
-    font-family: Arial;
     text-transform: uppercase;
 }
 .txt4::before {
@@ -122,6 +125,12 @@
     filter: brightness(200%);
     overflow: hidden;
 }
+.neon-wrapper .txt1, .neon-wrapper .txt2, .neon-wrapper .txt3, .neon-wrapper .txt4 {
+    /* font-family: 'Pacifico', cursive; */
+    /* font-family: 'amithen_extraregular'; */
+    /* Other styling properties */
+}
+
 .gradient{
     background: linear-gradient(114.5793141156962deg, #003366 4.927083333333334%,#d6b600 97.84374999999999%);
     position: absolute;
@@ -157,6 +166,30 @@
     }
 }
 
+.mission-statement {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.mission-heading {
+    /* background: -webkit-linear-gradient(114.5793141156962deg, #0071e2 4.927083333333334%, #d6b600 97.84374999999999%); */
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.mission-text {
+    background: -webkit-linear-gradient(114.5793141156962deg, #d6b600 4.927083333333334%, #0071e2 97.84374999999999%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
 .featured-events {
     width: 100vw;
     display: flex;
@@ -174,8 +207,12 @@
 .featured-events h2,.map-container h2 {
     width: 100%;
     text-align: center;
+    margin-bottom: 20px;
     /* margin-bottom: 20px; */
 }
+
+
+
 .map-container {
     text-align: center;
     display: flex;

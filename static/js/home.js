@@ -19,3 +19,8 @@ function displayFeaturedEvents() {
 document.addEventListener('DOMContentLoaded', function() {
     displayFeaturedEvents();
 });
+document.getElementById('scrollToFeatured').addEventListener('click', function() {
+    document.querySelector('.featured-events').scrollIntoView({ 
+        behavior: "smooth"
+    });
+});

@@ -5,15 +5,15 @@ export function createEventCard(event, index) {
     const randomImageNumber = Math.floor(Math.random() * 8) + 1; // 1 to 8
     const imageName = `card${randomImageNumber}.png`;
 
-    let articleClass = ''; // default blue
-    if ((index + 1) % 3 === 1) {
-        articleClass = 'card__green';
-    } else if ((index + 1) % 3 === 2) {
-        articleClass = 'card__orange';
-    }
+    // let articleClass = ''; 
+    // if ((index + 1) % 3 === 1) {
+    //     articleClass = 'card__green';
+    // } else if ((index + 1) % 3 === 2) {
+    //     articleClass = 'card__orange';
+    // }
 
     card.innerHTML = `
-    <article class="card__article ${articleClass}">
+    <article class="card__article">
     <div class="card__sticker" style="display: none;">
         <img src="../static/img/balloonicon.png" alt="Attending"> <!-- Adjust the src attribute as needed -->
     </div>
@@ -36,7 +36,10 @@ export function createEventCard(event, index) {
             <li>Date: ${event.date}</li>
             <li>Guest Count: ${event.guestCount}</li>
         </ul>
-        <button class="card__rsvp-button">RSVP</button>
+        <div class="button-container">
+             <button class="card__rsvp-button">RSVP</button>
+        </div>
+
     </div>
 </article>
     `;
@@ -44,9 +47,10 @@ export function createEventCard(event, index) {
     const rsvpButton = card.querySelector('.card__rsvp-button');
     rsvpButton.addEventListener('click', function() {
         console.log('RSVP clicked for:', event.title, 'Index:', index);
+        this.classList.add('disabled');
         this.disabled = true; // Disable the button
         this.textContent = 'Attending'; // Change button text to "Attending"
-        this.style.backgroundColor = '#808080'; // Grey background
+        // this.style.backgroundColor = '#808080'; // Grey background
         this.style.color = '#FFFFFF'; // White text
         const sticker = card.querySelector('.card__sticker'); // Get the sticker element
         sticker.style.display = 'block'; // Show the sticker

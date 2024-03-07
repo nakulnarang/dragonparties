@@ -61,14 +61,14 @@ a {
 }
 .card__article {
   --hue-1: 210;
-  --hue-2: 238;
+  --hue-2: 50;
   position: relative;
   justify-items: center;
   color: var(--white-color);
   text-align: center;
   padding: 3rem 1.5rem; 
   border: 4px solid transparent;
-  background: linear-gradient(var(--container-color), var(--container-color)) padding-box, linear-gradient(135deg, hsl(var(--hue-1), 85%, 70%) 0%, var(--container-color), var(--container-color), hsl(var(--hue-2), 70%, 55%) 100%) border-box;
+  background: linear-gradient(var(--container-color), var(--container-color)) padding-box, linear-gradient(135deg, hsl(var(--hue-1), 100%, 44%) 0%, var(--container-color), var(--container-color), hsl(var(--hue-2), 100%, 42%) 100%) border-box;
   border-radius: 1.25rem;
   overflow: hidden;
   height: 400px;
@@ -119,9 +119,9 @@ a {
   color: var(--black-color);
   font-weight: 500;
 }
-.card__orange {
-  --hue-1: 300;
-  --hue-2: 30;
+/* .card__orange {
+  --hue-1: 210;
+  --hue-2: 50;
 }
 .card__green {
   --hue-1: 180;
@@ -130,11 +130,11 @@ a {
 .card__test {
   --hue-1: 100;
   --hue-2: 10;
-}
+} */
 .card__scale-1 {
   width: 148px;
   height: 148px;
-  background: linear-gradient(140deg, hsl(var(--hue-1), 70%, 50%) 3%, hsl(var(--hue-2), 95%, 45%) 100%);
+  background: linear-gradient(140deg, hsl(var(--hue-1), 100%, 44%) 50%, hsl(var(--hue-2), 95%, 45%) 50%);
   border-radius: 2rem;
   top: 4rem;
 }
@@ -209,28 +209,7 @@ a {
   margin-bottom: 10px; 
 }
 
-.card__rsvp-button {
-  margin-top: 20px;
-  background-color: #007bff;
-  color: #fff; 
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer; /* Change cursor to indicate interactivity */
-  transition: background-color 0.3s; 
-}
 
-.card__rsvp-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
-.card__rsvp-button:disabled {
-  cursor: default; 
-  opacity: 1; 
-}
-
-.card__rsvp-button:disabled:hover {
-  background-color: #808080;
-}
 
 .card__sticker {
   position: absolute;

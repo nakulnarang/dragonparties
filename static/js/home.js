@@ -1,5 +1,6 @@
 import { createEventCard } from '../js/eventCard.js';
 
+
 function displayFeaturedEvents() {
     // Define dummy data for three featured events
     const featuredEvents = [

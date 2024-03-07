@@ -1,15 +1,180 @@
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background: #000000; 
+    overflow: visible;
+    height: 100vh;
+    width: 100%;
+    padding-top: 100px; */
+
+}
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    /* height: 700px;
+    width: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #000000; 
+    /* overflow: visible; */
+
+}
+.neon-wrapper:nth-child(1)
+{
+    margin-top: -50px;
+}
+
+.neon-wrapper:nth-child(2)
+{
+    margin-bottom: 200px;
+}
+
+/* .neon-wrapper:nth-child(1) {
+    position: relative;
+    margin-top: -100px;
+    margin-left: 100px;
+    align-self: flex-start; 
+    text-align: left; 
+}
+.neon-wrapper:nth-child(2)
+{
+    margin-left: 200px;
+    align-self: flex-start; 
+    text-align: left; 
+}
+.neon-wrapper:nth-child(3){
+
+    margin-right: 200px;
+    align-self: flex-start; 
+    text-align: left;
+}
+
+.neon-wrapper:nth-child(4) {
+
+    align-self: flex-start;
+    text-align: left; 
+} */
+
+
+.txt1 {
+    color: #ffffff;
+    background:#000000;
+    font-size:80px;
+    font-weight: bold;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+.txt1::before {
+    content: '“Ambition can’t wait”';
+    position: absolute;
+    mix-blend-mode: difference;
+    filter: blur(1px);
+}
+.txt2 {
+    color: #ffffff;
+    background:#000000;
+    font-size:40px;
+    font-weight: bold;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+.txt2::before {
+    content: '-Drexel University';
+    position: absolute;
+    mix-blend-mode: difference;
+    filter: blur(1px);
+}
+.txt3 {
+    color: #ffffff;
+    background:#000000;
+    font-size:80px;
+    font-weight: bold;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+.txt3::before {
+    content: '“But neither can parties”';
+    position: absolute;
+    mix-blend-mode: difference;
+    filter: blur(1px);
+}
+.txt4 {
+    color: #ffffff;
+    background:#000000;
+    font-size:40px;
+    font-weight: bold;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+.txt4::before {
+    content: '-Team Dragon Parties';
+    position: absolute;
+    mix-blend-mode: difference;
+    filter: blur(1px);
+}
+.neon-wrapper {
+    display:inline-flex;
+    filter: brightness(200%);
+    overflow: hidden;
+}
+.gradient{
+    background: linear-gradient(114.5793141156962deg, #003366 4.927083333333334%,#d6b600 97.84374999999999%);
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height:100%;
+    mix-blend-mode: multiply;
+}
+.dodge1 {
+    background: radial-gradient(circle,white,black 35%) center / 25% 25%;
+    position: absolute;
+    top:-100%;
+    left:-100%;
+    right:0;
+    bottom:0;
+    mix-blend-mode: color-dodge;
+    animation: dodge-area 5s linear infinite;
+}
+.dodge2 {
+    background: radial-gradient(circle,#ffffffa9,rgb(0, 0, 0) 35%) center / 25% 25%;
+    position: absolute;
+    top:-100%;
+    left:-100%;
+    right:0;
+    bottom:0;
+    mix-blend-mode:color-dodge;
+    animation: dodge-area 5s linear infinite;
+}
+@keyframes dodge-area {
+    to {
+        transform: translate(50%,50%);
+    }
+}
+
 .featured-events {
+    width: 100vw;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 3rem;
-    padding: 1rem;
+    column-gap: 3rem;
+    row-gap: 1rem;
+    /* margin-top: 100px; */
+    padding: 1.5rem;
+    /* background: rgb(27, 27, 27); */
+    border-radius: 5px;
+    /* padding: 1rem; */
 }
 
 .featured-events h2,.map-container h2 {
     width: 100%;
     text-align: center;
-    margin-bottom: 1rem;
+    /* margin-bottom: 20px; */
 }
 .map-container {
     text-align: center;
@@ -37,3 +202,14 @@
     
 }
 
+/* .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+
+  .fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  } */

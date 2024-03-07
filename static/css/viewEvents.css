@@ -1,3 +1,6 @@
+/* body {
+  background: #121212; 
+} */
 .events-grid {
   width: 1500px;
   align-items:baseline;
@@ -5,4 +8,5 @@
   flex-wrap: wrap;
   justify-content: center; 
   gap: 40px; 
+  /* background: #121212; */
 }

@@ -7,7 +7,7 @@
   --white-color: #fff;
   --black-color: hsl(210, 12%, 15%);
   --body-color: hsl(210, 16%, 12%);
-  --container-color: hsla(0, 0%, 0%, 0.856);
+  --container-color: hsl(0, 0%, 0%);
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
@@ -73,7 +73,7 @@ a {
   overflow: hidden;
   height: 400px;
   width: 300px;
-  transition: transform 0.15s ease;
+  transition: transform 0.1s ease;
 }
 
 .card__shape-1 {
@@ -245,10 +245,10 @@ a {
   /* transform: rotate(-45deg); */
   white-space: nowrap; /* Prevent the text from wrapping */
 }
-.event-card {
-  position: relative; /* This makes the absolute positioning of the sticker relative to the card */
+/* .event-card {
+  position: relative;
   overflow: visible;
-}
+} */
 
 .card__sticker img {
   width: 60px; /* Adjust the width as needed */

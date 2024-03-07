@@ -24,6 +24,7 @@ function fetchEvents() {
 }
 document.addEventListener('DOMContentLoaded', function() {
     fetchEvents();
+    // check
     console.log('Events fetched');
 });
 

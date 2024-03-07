@@ -1,6 +1,6 @@
 export function createEventCard(event, index) {
     const card = document.createElement('div');
-    card.className = 'event-card';
+    card.className = 'event-card fade-in-section';
 
     const randomImageNumber = Math.floor(Math.random() * 8) + 1; // 1 to 8
     const imageName = `card${randomImageNumber}.png`;

@@ -4,17 +4,49 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/eventCard.css') }}">
-    <div class="featured-events">
-        <h2>FEATURED EVENTS</h2>
+<div class = "home-wrapper">
+    <div class="fade-in-section">
+        <div class="wrapper">
+            <div class="neon-wrapper">
+                <span class="txt1" >“Ambition can’t wait”</span>
+                <span class="gradient"></span>
+                <span class="dodge1"></span>
+            </div>
+            <div class="neon-wrapper">
+                <span class="txt2" >-Drexel University</span>
+                <span class="gradient"></span>
+                <span class="dodge1"></span>
+            </div>
+            <div class="neon-wrapper">
+                <span class="txt3" >“But neither can parties”</span>
+                <span class="gradient"></span>
+                <span class="dodge2"></span>
+            </div>
+            <div class="neon-wrapper">
+                <span class="txt4" >-Team Dragon Parties</span>
+                <span class="gradient"></span>
+                <span class="dodge2"></span>
+            </div>
+        </div>
+    </div>
+    <div class="fade-in-section">
+        <div class="featured-events">
+                <h2>FEATURED EVENTS</h2>
 
         </div>
     </div>
-    <div class="map-container">
-        <h2>NEARBY PARTIES</h2>
-        <div id="map">
+    <div class="fade-in-section">    
+        <div class="map-container">
+            <h2>NEARBY PARTIES</h2>
+            <div id="map">
+            </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type = "module" src="../static/js/home.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type = "module" src="../static/js/scrollAnimation.js"></script>
+        <script type = "module" src="../static/js/home.js"></script>
+   
+    </div>
+</div>
         
 {% endblock %}

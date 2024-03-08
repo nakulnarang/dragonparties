@@ -32,7 +32,7 @@ export function createEventCard(event, index) {
         <ul>
             <li>Time: ${event.time}</li>
             <li>Location: ${event.location}</li>
-            <li>Venue: ${event.venue}</li>
+            <li>Entry Price: Jawdropping</li>
             <li>Date: ${event.date}</li>
             <li>Guest Count: ${event.guestCount}</li>
         </ul>

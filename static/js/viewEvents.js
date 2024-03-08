@@ -3,7 +3,7 @@ import { createEventCard } from '../js/eventCard.js';
 function fetchEvents() {
     // Dummy data for now later implemennt fetching from the server
     const events = [
-        { title: 'Event 1', date: '2024-03-01', description: 'Description of Event 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+        { title: 'Event 1', date: '2024-03-01', description: 'sdfsdafsdfsd adsf asdf asdf asfd asd asda dasd asd asdf asd asd asd asda das asd asd asda sdfasd asdasd asda sdasd asdasd asdasdasd asdasd asdasc ASD AS ASD AD ' },
         { title: 'Event 2', date: '2024-03-15', description: 'Description of Event 2. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.' },
         { title: 'Event 3', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
         { title: 'Event 4', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },

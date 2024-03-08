@@ -1,0 +1,158 @@
+@import url('hostEventCard.css');
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    background: #ffffff00;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 20px;
+    display: inline-block;
+    background: transparent; /* Make input field background transparent */
+    color: white; /* Set text color to white */
+    border: 2px solid transparent; /* Prepare for gradient border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    border-image: linear-gradient(to right, #0071e2, #d6b600) 1; /* Apply gradient border */
+}
+/* Hide the default number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+
+  margin: 0;
+}
+
+
+
+/* Custom styles for the number input to resemble arrows */
+input[type="number"] {
+  position: relative;
+  background: transparent;
+  color: #ffffff;
+  -moz-appearance: textfield;
+  /* Other styles to match your design */
+}
+
+/* You can add pseudo-elements if you need visual arrows */
+input[type="number"]::after {
+  /* content: '12';  */
+  position: absolute;
+  right: 8px; /* Adjust based on your design */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff0000; /* White color for arrows */
+  pointer-events: none; /* To ensure the pseudo-element doesn't interfere with input functionality */
+  font-size: 10px; /* Adjust size as needed */
+}
+
+
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #0071e2;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#imageInfo {
+    margin-top: 10px;
+    color: white; /* Change text color to white */
+}
+
+/* #clearImage {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#clearImage:hover {
+    background-color: #d32f2f;
+} */
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0 20px;
+    display: inline-block;
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #0071e2, #d6b600);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: transparent;
+    color: #ffffff;
+    min-height: 100px; /* Minimum height */
+    max-height: 200px; /* Maximum height */
+    min-width: 250px;
+    max-width: 250px;
+
+}
+
+.flatpickr-calendar .flatpickr-arrow {
+    color: transparent; 
+}
+
+.flatpickr-calendar .flatpickr-prev-month,
+.flatpickr-calendar .flatpickr-next-month {
+    color: #0071e2; 
+}
+
+
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    outline: none; /* Removes the blue outline on focus */
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background: linear-gradient(to right, #0071e2, #d6b600);
+    color: white;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, #0071e2, #d6b600) 1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-file-upload:hover {
+    background: linear-gradient(to right, #0056b3, #a8a500);
+}

@@ -1,7 +1,7 @@
 from db import Database
 from flask import g
 
-db_path = 'bikes.db'
+db_path = 'dragonpartiestest.db'
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:

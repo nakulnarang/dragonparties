@@ -79,7 +79,9 @@ function submitAllDetails() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
+      
     })
+    console.log(JSON.stringify(formData))
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -96,6 +98,29 @@ function submitAllDetails() {
 
 $('#getCode').click(function() {
     submitAllDetails(); // Call submitAllDetails when "Get Code" button is clicked
+});
+
+document.getElementById('loginLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default anchor behavior
+
+    fetch('/home', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        // If you need to send data in the POST request, you can include it in the body
+        // body: 'key=value&key2=value2'
+    }).then(response => {
+        if (response.ok) {
+            return response.text(); // or response.json() if your server sends JSON
+        }
+        throw new Error('Network response was not ok.');
+    }).then(html => {
+        // Process the response (e.g., redirect or update the page content)
+        window.location.href = '/home'; // Redirect to /home on successful POST
+    }).catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
 });
 
 

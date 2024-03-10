@@ -1,0 +1,30 @@
+CREATE TABLE user (
+	user_id INTEGER PRIMARY KEY,
+	type	TEXT NOT NULL,
+	name	TEXT NOT NULL,
+	email	TEXT NOT NULL,
+	gender	TEXT NOT NULL,
+	username TEXT NOT NULL,
+	encrypted_password TEXT NOT NULL
+);
+
+CREATE TABLE party (
+	party_id	INTEGER PRIMARY KEY,
+	party_name	TEXT NOT NULL,
+	location	TEXT,
+	capacity	INTEGER,
+	price		INTEGER,
+	host        INTEGER,
+	datetime	DATETIME,
+	desc		TEXT,
+	image 		TEXT,
+    FOREIGN KEY(host) REFERENCES user(user_id)
+);
+
+CREATE TABLE mappingtable (
+	id	INTEGER PRIMARY KEY,
+    party INTEGER,
+    attendees INTEGER,
+	FOREIGN KEY(party) REFERENCES party(id)
+	FOREIGN KEY(attendees) REFERENCES user(user_id)
+);

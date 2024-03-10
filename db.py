@@ -8,6 +8,8 @@ class Database:
 
     def select(self, sql, parameters=[]):
         c = self.conn.cursor()
+        # if parameters is None:
+        #     parameters = ()
         c.execute(sql, parameters)
         return c.fetchall()
 
@@ -33,7 +35,7 @@ class Database:
             'encrypted_password': data[0][6]
         }
 
-    def get_events(self):
+    def get_all_events(self):
         data = self.select(
             'SELECT * FROM party ORDER BY id ASC')
         return [{
@@ -46,6 +48,47 @@ class Database:
             'host': d[6],
             'datetime': d[7],
             'desc': d[8]
+        } for d in data]
+    
+    def get_events(self, ids):
+        if not isinstance(ids, (tuple, list)):
+            ids = (ids,)
+        data = self.select(
+            'SELECT * FROM party WHERE party_id IN (%s)'% ','.join('?'*len(ids)), ids)
+        return [{
+            'party_id': d[0],
+            'party_name': d[1],
+            'capacity': d[2],
+            'location': d[3],
+            'image': d[4],
+            'price': d[5],
+            'host': d[6],
+            'datetime': d[7],
+            'desc': d[8]
+        } for d in data]
+    
+    def get_event(self, id):
+        data = self.select('SELECT * FROM party WHERE party_id=?', [id])
+        if len(data) == 0:
+            return None
+        return {
+            'party_id': data[0],
+            'party_name': data[1],
+            'capacity': data[2],
+            'location': data[3],
+            'image': data[4],
+            'price': data[5],
+            'host': data[6],
+            'datetime': data[7],
+            'desc': data[8] 
+        }
+        
+    
+    def get_featured_events(self):
+        data = self.select('SELECT COUNT(*) as party_count, party FROM mappingtable ORDER BY party DESC LIMIT 3')
+        return [{
+            'party_count': d[0],
+            'party': d[1]
         } for d in data]
     
     def get_party_rsvp_count(self):

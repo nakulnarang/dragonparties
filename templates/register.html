@@ -25,18 +25,19 @@
 
                 <!-- User Creation Form 1 -->
                 <form id="createUserForm1" class="form-content">
-                  <h2 class="login-title">REGISTER</h2>
-                    <input type="text" id="firstName" placeholder="First Name" required>
-                    <input type="text" id="lastName" placeholder="Last Name" required>
-                    <input type="text" id="username" placeholder="Dragon Party Username" required>
-                    <select id="gender">
+                    <h2 class="login-title">REGISTER</h2>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    <input type="text" id="username" name="username" placeholder="Dragon Party Username" required>
+                    <select id="gender" name="gender">
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
-                        <option value="other">ApacheAttackHelicopter</option>
+                        <option value="other">Other</option>
                     </select>
-                    <button type="button" id="nextToForm2">Next</button>
+                    <button type="button" id="nextToForm2" onclick="submitPersonalDetails()">Next</button>
                 </form>
+                
 
                 <!-- User Creation Form 2 -->
                 <form id="createUserForm2" class="form-content" style="display: none;">

@@ -62,3 +62,33 @@ $(document).ready(function() {
         e.preventDefault();
     });
 });
+function submitPersonalDetails() {
+    const formData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        username: document.getElementById('username').value,
+        gender: document.getElementById('gender').value
+    };
+
+    fetch('/submitPersonalDetails', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Assuming the AJAX call is successful, manually transition to the next form
+        $('#createUserForm1').fadeOut(animationSpeed, function() {
+            $('#createUserForm2').fadeIn(animationSpeed);
+            setProgress(1); // Move the progress to the next step
+        });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+

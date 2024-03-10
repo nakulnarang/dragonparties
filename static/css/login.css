@@ -61,13 +61,13 @@ body {
     color: #ffffff;
   }
 
-  #otpForm input {
+  /* #otpForm input {
     width: 60%;
     padding: 10px;
-    margin: 10px -10px; /* Verify if negative margin is intended */
+    margin: 10px -10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
+} */
 
   /* Apply to all buttons in the forms */
   #loginForm button,
@@ -107,6 +107,24 @@ body {
    { /* Include backButton hover if you want the same hover effect */
       background-color: #0055A2; /* A darker Drexel blue */
   }
+
+  #loginForm button:disabled,
+#createUserForm1 button:disabled,
+#createUserForm2 button:disabled,
+#otpForm button:disabled { /* Style for disabled buttons */
+    background-color: #cccccc; /* Light gray background */
+    color: #666666; /* Darker gray text */
+    cursor: not-allowed; /* Change cursor to indicate the button is disabled */
+    border: 1px solid #cccccc; /* Optional: add a border to match the background */
+}
+
+#loginForm button:disabled:hover,
+#createUserForm1 button:disabled:hover,
+#createUserForm2 button:disabled:hover,
+#otpForm button:disabled:hover { /* Remove hover effects for disabled buttons */
+    background-color: #cccccc; /* Keep the background color the same */
+    color: #666666; /* Keep text color the same */
+}
   #backButton {
     position: absolute; /* Position the button absolutely within its relative parent */
     top: 20px; /* Adjust this value to align with the form's heading */
@@ -218,4 +236,5 @@ body {
 	background: #f2ca00;
 	color: white;
 }
+
 

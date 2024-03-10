@@ -1,11 +1,61 @@
 import os
 import service
-
+import random
 from passlib.hash import pbkdf2_sha256
 from flask import Flask, g, json, render_template, request, redirect, session, jsonify, url_for
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.secret_key = b'demokeynotreal!'
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'teamdragonparties@gmail.com'
+app.config['MAIL_PASSWORD'] = 'bols vdqb noaq melw'
+
+mail = Mail(app)
+@app.route('/send-email', methods=['POST'])
+def send_email():
+    data = request.get_json()  # Get the JSON data sent with the request
+    email = data.get('email')  # Extract the email address from the JSON data
+
+    if not email:
+        return jsonify({'status': 'error', 'message': 'Email address is missing'}), 400
+
+    # Generate a 6-digit OTP
+    otp = random.randint(100000, 999999)
+    session['otp'] = otp  # Store OTP in session for later verification
+
+    print("Sending email to:", email)
+    msg = Message("OTP for Dragon Parties",
+                  sender="teamdragonparties@gmail.com",
+                  recipients=[email])  # Use the provided email address as the recipient
+    msg.body = f"Your OTP for Dragon Parties is: {otp}"
+
+    # Send email
+    mail.send(msg)
+
+    return jsonify("Message: OTP email sent")
+
+
+
+@app.route('/verify-otp', methods=['POST'])
+def verify_otp():
+    user_otp = request.json.get('otp')  # Get OTP entered by the user
+    if 'otp' in session and str(session['otp']) == user_otp:
+        # OTP verification successful
+        session.pop('otp', None)  # Remove OTP from session after verification
+        print("OTP verified successfully")
+        # Return a JSON response indicating success
+        return jsonify({'status': 'success', 'message': 'OTP verified successfully'})
+    else:
+        # OTP verification failed
+        print("Invalid OTP")
+        # Return a JSON response indicating an error
+        return jsonify({'status': 'error', 'message': 'Invalid OTP'}), 400
+
 
 @app.teardown_appcontext
 def close_db(exception):
@@ -63,28 +113,9 @@ def submitAllDetails():
         if username and password:
             encrypted_password = pbkdf2_sha256.encrypt(password)
             service.createuser(name, type, email, gender, username, encrypted_password)
+
             return redirect('/')
-    # data = request.json  # Get JSON data sent from the AJAX call
-    # firstName = data.get('firstName')
-    # lastName = data.get('lastName')
-    # username = data.get('username')
-    # gender = data.get('gender')
-    # drexelEmail = data.get('drexelEmail')
-    # password1 = data.get('password1')
-    # password2 = data.get('password2')
 
-    # print(f"First Name: {firstName}")
-    # print(f"Last Name: {lastName}")
-    # print(f"Username: {username}")
-    # print(f"Gender: {gender}")
-    # print(f"Drexel Email: {drexelEmail}")
-    # print(f"Password1: {password1}")
-    # print(f"Password2: {password2}")
-
-    # Process the data here (e.g., save to database, perform validations)
-
-    # Return a JSON response indicating success or providing additional data
-    #return jsonify({'status': 'success', 'message': 'All details submitted successfully'})
     return render_template('register.html')
 
 

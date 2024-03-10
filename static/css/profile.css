@@ -1,8 +1,13 @@
 .profile-container {
-    max-width: 90vw;
+    /* max-width: 90vw; */
     margin: auto;
     padding: 20px;
     text-align: center; /* Center text within the container */
+}
+
+.profile-container h2 {
+    margin-bottom: 20px;
+    margin-top: 60px;
 }
 
 .user-details {
@@ -21,9 +26,9 @@
      text-fill-color: transparent; /* Fallback for non-webkit browsers */
      text-align: center;
 }
-.events-grid {
+.events-grid1, .events-grid2 {
     align-self: center;
-    width: 1500px;
+    min-width: 100vb;
     align-items:baseline;
     display: flex;
     flex-wrap: wrap;

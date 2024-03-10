@@ -103,10 +103,10 @@ $('#getCode').click(function() {
 document.getElementById('loginLink').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default anchor behavior
 
-    fetch('/home', {
+    fetch('/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'application/json',
         },
         // If you need to send data in the POST request, you can include it in the body
         // body: 'key=value&key2=value2'

@@ -1,18 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const userDetails = {
-        name: 'Sidhant Gumber',
-        username: 'janedoe123',
-        email: 'jane.doe@example.com'
-    };
+    
+    
+        // Function to make AJAX request to fetch user details
+        function getUserDetails() {
+            fetch('/get_user_details', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Populate user details in the HTML
+                const userDetailsContainer = document.querySelector('.user-details');
+                console.log(data);
+                // console.log(data.s)
+                userDetailsContainer.innerHTML = `
+                    <h1>User Profile</h1>
+                    <p><strong>Name:</strong> ${data.name}</p>
+                    <p><strong>Username:</strong> ${data.username}</p>
+                    <p><strong>Email:</strong> ${data.email}</p>
+                    <p><strong>Gender:</strong> ${data.gender}</p>
+                    <!-- Add more user details as needed -->
+                `;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
 
     // Populate user details
-    const userDetailsContainer = document.querySelector('.user-details');
+    /*const userDetailsContainer = document.querySelector('.user-details');
     userDetailsContainer.innerHTML = `
         <h1>User Profile</h1>
         <p><strong>Name:</strong> ${userDetails.name}</p>
         <p><strong>Username:</strong> ${userDetails.username}</p>
         <p><strong>Email:</strong> ${userDetails.email}</p>
-    `;
+    `; */
 
     const eventsGrid = document.querySelector('.events-grid');
 

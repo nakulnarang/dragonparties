@@ -1,11 +1,17 @@
 import os
 import service
-
+from service import getlocations
 from passlib.hash import pbkdf2_sha256
-from flask import Flask, g, json, render_template, request, redirect, session, jsonify, url_for
+from flask import Flask, g, json, render_template, request, redirect, session, jsonify, url_for, render_template_string
+import folium
+from geopy.geocoders import ArcGIS
 
+UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
+
+nom = ArcGIS()
 app = Flask(__name__)
 app.secret_key = b'demokeynotreal!'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.teardown_appcontext
 def close_db(exception):
@@ -15,6 +21,7 @@ def close_db(exception):
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    print(service.getlocations())
     if request.method == 'POST':
         username = request.json.get('username')
         typed_password = request.json.get('password')
@@ -89,6 +96,30 @@ def submitAllDetails():
 
 
 
+def create_folium_map(locations):
+    # Create Folium map centered at the first location
+    my_map = folium.Map(location=[locations[0].latitude, locations[0].longitude], zoom_start=12)
+    
+    # Add markers for each location
+    for location in locations:
+        address = location.address if location.address else "Unknown Address"
+        add_marker(my_map, location, address)
+
+    # Save the map as an HTML string
+    my_map.get_root().width = '1000px'
+    my_map.get_root().height = "500px"
+    iframe = my_map.get_root()._repr_html_()
+    #map_html = my_map.get_root().render()
+
+    return iframe
+
+def add_marker(my_map, location, popup_text):
+    folium.Marker(
+        location=[location.latitude, location.longitude],
+        popup=popup_text,
+        icon=folium.Icon(color='blue')
+    ).add_to(my_map)
+
 
 @app.route('/register')
 def register():
@@ -111,8 +142,14 @@ def home():
     if 'user' in session:
         #user_id = session['user']['user_id']
         service.getfeaturedevents()
-        service.getmaps()
-        return render_template('home.html')
+        locations = getlocations()
+        all_coordinates = []
+        for location in locations:
+            coordinates = nom.geocode(location)
+            all_coordinates.append(coordinates)
+        iframe = create_folium_map(all_coordinates)
+        return render_template('home.html', iframe= iframe)
+        
     else:
         return jsonify('Error: User not authenticated')
         
@@ -123,19 +160,24 @@ def host():
 @app.route('/createEvent', methods=['POST'])
 def createevent():
     if request.method == 'POST':
-        name = request.form['name']
+        name = request.form['eventName']
         capacity = request.form['capacity']
         location = request.form['location']
-        image = request.form['image']
-        price = request.form['price']
-        host = request.form['host']
-        datetime = request.form['datetime']
-        desc = request.form['desc']
+        #image = save_uploaded_file(request.files['eventImage'])
+        print(f"Image File Path: {image}")
+        price = request.form['ticketPrice']
+        host = session['user']['username']  # Assuming user is authenticated
+        datetime = request.form['eventDate'] + ' ' + request.form['eventTime']
+        desc = request.form['eventDescription']
+
         if name and capacity and location and image and price and host and datetime and desc:
             service.createparty(name, capacity, location, image, price, host, datetime, desc)
             return redirect('/home')
         else:
             return jsonify('Error: Missing parameters') 
+
+
+
 
 @app.route('/viewEvents')
 def viewevents():
@@ -148,7 +190,27 @@ def logout():
     
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    if 'user' in session:
+        user_details = session['user']
+        return render_template('profile.html', user_details=user_details)
+    else:
+        # Redirect to the home page or another route if the user is not in the session
+        return redirect(url_for('home'))
+    
+@app.route('/get_user_details', methods=['GET'])
+def get_user_details():
+    if 'user' in session:
+        user_details = session['user']
+        print(user_details)
+        return jsonify({
+            'name': user_details.get('name'),
+            'username': user_details.get('username'),
+            'email': user_details.get('email'),
+            'gender': user_details.get('gender')
+            # Add more user details as needed
+        })
+    else:
+        return jsonify({'error': 'User not authenticated'})
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

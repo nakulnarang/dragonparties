@@ -14,23 +14,24 @@ def getuser(username):
 def createuser(name, type, email, gender, username, encrypted_password):
     get_db().create_user(name, type, email, gender, username, encrypted_password)
 
-def deleteuser():
-    pass
+def deleteuser(username):
+    get_db().delete_user(username)
 
-def edituser():
-    pass
+def edituser(username, new_name, new_email, new_gender, new_encrypted_password):
+    get_db().edit_user(username, new_name, new_email, new_gender, new_encrypted_password)
 
 def createparty(name, capacity, location, image, price, host, datetime, desc):
     get_db().create_party(name, capacity, location, image, price, host, datetime, desc)
 
-def deleteparty():
-    pass
+def deleteparty(party_id):
+    get_db().delete_party(party_id)
 
-def editparty():
-    pass
+def editparty(party_id, new_name, new_location, new_capacity, new_image, new_desc, new_price, new_host, new_datetime):
+    get_db().edit_party(party_id, new_name, new_location, new_capacity, new_image, new_desc, new_price, new_host, new_datetime)
 
-def getmaps():
-    pass
+def getlocations():
+    return get_db().get_party_locations()
+    
 
 def getfeaturedevents():
     featuredevents = get_db().get_party_rsvp_count()[0:3];

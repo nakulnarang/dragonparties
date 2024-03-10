@@ -236,8 +236,13 @@
     height: 400px; 
     border-radius: 0.5rem;
     overflow: visible;
-    background: url('../img/map.png') center/cover no-repeat; 
+    /* background: url('../img/map.png') center/cover no-repeat;  */
     
+}
+#folium-map-container {
+    width: 100%; /* Set the width as needed */
+    height: 400px; /* Set the height as needed */
+    margin-top: 20px; /* Adjust the margin-top as needed */
 }
 
 /* .fade-in-section {

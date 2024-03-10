@@ -59,6 +59,11 @@ class Database:
         data = self.select('SELECT COUNT(*) FROM party')
         return data[0][0]
     
+    def get_party_locations(self):
+        data = self.select('SELECT DISTINCT location FROM party')
+        return [d[0] for d in data]
+
+    
     def get_num_users(self):
         data = self.select('SELECT COUNT(*) FROM user')
         return data[0][0]
@@ -88,6 +93,18 @@ class Database:
             'datetime':d[6],
             'desc':d[7]
             } for d in data]
+    
+    def delete_user(self, username):
+        self.execute('DELETE FROM user WHERE username=?', [username])
+    
+    def edit_user(self, username, new_name, new_email, new_gender, new_encrypted_password):
+        self.execute('UPDATE user SET name=?, email=?, gender=?, encrypted_password=? WHERE username=?', [new_name, new_email, new_gender, new_encrypted_password, username])
 
+    def delete_party(self, party_id):
+        self.execute('DELETE FROM party WHERE id=?', [party_id])
+
+    def edit_party(self, party_id, new_name, new_location, new_capacity, new_image, new_desc, new_price, new_host, new_datetime):
+        self.execute('UPDATE party SET party_name=?, location=?, capacity=?, image=?, desc=?, price=?, host=?, datetime=? WHERE id=?', [new_name, new_location, new_capacity, new_image, new_desc, new_price, new_host, new_datetime, party_id])
+    
     def close(self):
         self.conn.close()

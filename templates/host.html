@@ -21,7 +21,7 @@
                 <img src="../static/img/eventcards/${imageName}" alt="${event.title}">
             </div> -->
             <div class="card__data">
-                <form id="eventForm">
+                <form id="eventForm" method="POST" action="/createEvent" >
 
                     <label for="eventName">Name of the Event:</label>
                     <input type="text" id="eventName" name="eventName">

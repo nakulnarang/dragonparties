@@ -81,7 +81,7 @@ function submitAllDetails() {
         body: JSON.stringify(formData)
       
     })
-    console.log(JSON.stringify(formData))
+    
     .then(response => response.json())
     .then(data => {
         console.log(data);

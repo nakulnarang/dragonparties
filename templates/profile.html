@@ -6,11 +6,24 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/eventCard.css') }}">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <div class="profile-container">
-    <div class="user-details"></div>
+    
+    
+    <div class="user-details">
+        <h1>User Profile</h1>
+        <p><strong>Name:</strong> {{ user_details.type }}</p>
+        <p><strong>Username:</strong> {{ user_details.username }}</p>
+        <p><strong>Email:</strong> {{ user_details.email }}</p>
+        <p><strong>Gender:</strong> {{ user_details.gender }}</p>
+        <!-- Add more user details as needed -->
+    </div>
     <h2>My RSVP'd Events</h2>
     <div class="events-grid">
       
         <!-- Dynamically load event cards here -->
+    </div>
+    <h2>My Events</h2>
+    <div class="events-grid">
+
     </div>
 
     <div class="button-container">

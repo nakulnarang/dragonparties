@@ -18,9 +18,9 @@ class Database:
         c.execute(sql, parameters)
         self.conn.commit()
 
-    def get_user(self, username):
+    def get_user(self, email):
         data = self.select(
-            'SELECT * FROM user WHERE username=?', [username])
+            'SELECT * FROM user WHERE email=?', [email])
         
         if len(data) == 0:
             return None

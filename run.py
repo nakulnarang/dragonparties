@@ -4,8 +4,10 @@ import random
 from passlib.hash import pbkdf2_sha256
 from flask import Flask, g, json, render_template, request, redirect, session, jsonify, url_for
 from flask_mail import Mail, Message
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+# CORS(app)
 app.secret_key = b'demokeynotreal!'
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -63,21 +65,26 @@ def close_db(exception):
     if db is not None:
         db.close()
 
-@app.route('/', methods=['GET', 'POST'])
+# @app.route('/', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         username = request.json.get('username')
+#         typed_password = request.json.get('password')
+#         print(f"Username: {username}")
+#         print(f"Password: {typed_password}")
+#         if username and typed_password:
+#             user = service.getuser(username)
+#             if pbkdf2_sha256.verify(typed_password, user['encrypted_password']):
+#                 session['user'] = user
+#                 return redirect('/home')
+#     return render_template('login.html')
+        
+@app.route('/', methods=['GET'])
 def login():
-    if request.method == 'POST':
-        username = request.json.get('username')
-        typed_password = request.json.get('password')
-        print(f"Username: {username}")
-        print(f"Password: {typed_password}")
-        if username and typed_password:
-            user = service.getuser(username)
-            if pbkdf2_sha256.verify(typed_password, user['encrypted_password']):
-                session['user'] = user
-                return redirect('/home')
     return render_template('login.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/login', methods=['POST'])
 def auth():
     if request.method == 'POST':
         email = request.json.get('email')
@@ -86,12 +93,19 @@ def auth():
         print(f"Password: {typed_password}")
         if email and typed_password:
             user = service.getuser(email)
+            print(f"user: {user}")
             if pbkdf2_sha256.verify(typed_password, user['encrypted_password']):
                 session['user'] = user
-                return redirect('/home')
-    return redirect('/')
+                print(f"session: {session['user']}")
+                return jsonify({'status': 'success', 'message': 'Login successful'}), 200
+            else:
+                return jsonify({'status': 'error', 'message': 'Invalid credentials'}), 401
+    return jsonify({'status': 'error', 'message': 'Email or password not provided'}), 400
+
+
     
 @app.route('/submitAllDetails', methods=['POST'])
+@cross_origin()
 def submitAllDetails():
     if request.method == 'POST':
         username = request.json.get('username')
@@ -103,19 +117,23 @@ def submitAllDetails():
         gender = request.json.get('gender')
         firstname = request.json.get('firstName')
         lastname = request.json.get('lastName')
-        encrypted_password1 = pbkdf2_sha256.encrypt(password)
-        encrypted_password2 = pbkdf2_sha256.encrypt(repassword)
-        if encrypted_password1 != encrypted_password2:
-            message = "Passwords do not match"
-            return jsonify({'status': 'error', 'message': message})
+        # encrypted_password1 = pbkdf2_sha256.encrypt(password)
+        # encrypted_password2 = pbkdf2_sha256.encrypt(repassword)
+        # if encrypted_password1 != encrypted_password2:
+        #     message = "Passwords do not match"
+        #     return jsonify({'status': 'error', 'message': message})
         name = firstname + " " + lastname
         if username and password:
             encrypted_password = pbkdf2_sha256.encrypt(password)
+            print(name, type, email, gender, username, encrypted_password)
             service.createuser(name, type, email, gender, username, encrypted_password)
+            user = service.getuser(username)
+            session['user'] = user
 
-            return redirect('/')
+            #return jsonify({'status': 'success', 'message': 'User created successfully'})
+            return redirect('/home')
 
-    return render_template('register.html')
+    return jsonify({'status': 'error', 'message': 'Invalid request method'}), 405
 
 
 
@@ -127,10 +145,11 @@ def register():
 @app.route('/home', methods=['GET'])
 def home():
     if 'user' in session:
-        #user_id = session['user']['user_id']
+        #user_id = session['user']['id']
         featuredevents = service.getfeaturedevents()
+        print(f"session after logging in: {session['user']}")
         print(f"featured events: {featuredevents}")
-        service.getmaps()
+        #service.getmaps()
         return render_template('home.html')
     else:
         return jsonify('Error: User not authenticated')

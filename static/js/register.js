@@ -126,8 +126,7 @@ function sendEmail() {
         console.error('Error:', error);
     });
 }
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded');
+
     document.getElementById('otpForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
         console.log('Submitting OTP...');
@@ -147,8 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success') {
                 // OTP verified successfully
                 console.log('OTP verified in JS: Redirecting to /home...');
-                submitAllDetails();
-                window.location.href = '/home'; 
+                createUser();
                
             } else {
                 // OTP verification failed, handle the error
@@ -161,8 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error:', error);
         });
     });
-});
-function submitAllDetails() {
+
+
+function createUser() {
     const formData = {
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
@@ -172,31 +171,67 @@ function submitAllDetails() {
         password1: document.getElementById('password1').value,
         password2: document.getElementById('password2').value
     };
-    console.log("FORM DATA: " + formData);
 
     fetch('/submitAllDetails', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formData)
-      
     })
-    // console.log(JSON.stringify(formData))
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        // Assuming the AJAX call is successful, transition to the OTP form
-        $('#createUserForm2').fadeOut(animationSpeed, function() {
-            $('#otpForm').fadeIn(animationSpeed);
-        });
-        setProgress(2); // Move the progress to the next step
-    })
-    .catch((error) => {
+    // .then(response => response.json())
+    // .then(data => {
+    //     if (data.status === 'success') {
+    //         // window.location.href = '/home'; 
+    //     } else {
+    //         // Handle user creation error
+    //     }
+    // })
+    .catch(error => {
         console.error('Error:', error);
     });
 }
 
-$('#verifyOtp').click(function() {
-    submitAllDetails(); 
-});
+// function submitAllDetails() {
+//     const formData = {
+//         firstName: document.getElementById('firstName').value,
+//         lastName: document.getElementById('lastName').value,
+//         username: document.getElementById('username').value,
+//         gender: document.getElementById('gender').value,
+//         drexelEmail: document.getElementById('drexelEmail').value,
+//         password1: document.getElementById('password1').value,
+//         password2: document.getElementById('password2').value
+//     };
+//     console.log("FORM DATA: " + formData);
+
+//     fetch('/submitAllDetails', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(formData)
+      
+//     })
+//     // console.log(JSON.stringify(formData))
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data);
+//         if (data.status === 'success') {
+//             // Assuming the AJAX call to /submitAllDetails is successful, transition to the OTP form
+//             $('#createUserForm2').fadeOut(animationSpeed, function() {
+//                 $('#otpForm').fadeIn(animationSpeed);
+//             });
+//             setProgress(2); // Move the progress to the next step
+//             window.location.href = '/home';  // Redirect to home only if user creation was successful
+//         } else {
+//             // Handle error, possibly by showing the error message from the response
+//             console.error(data.message);
+//             // You might want to display the error message on the form here
+//         }
+//     })
+//     .catch((error) => {
+//         console.error('Error:', error);
+//     });
+// }
+
+// $('#verifyOtp').click(function() {
+//     submitAllDetails(); 
+// });

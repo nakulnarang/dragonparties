@@ -16,8 +16,8 @@ def close_db(exception):
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        typed_password = request.form['password']
+        username = request.json.get('username')
+        typed_password = request.json.get('password')
         print(f"Username: {username}")
         print(f"Password: {typed_password}")
         if username and typed_password:
@@ -30,12 +30,12 @@ def login():
 @app.route('/login', methods=['GET', 'POST'])
 def auth():
     if request.method == 'POST':
-        username = request.json.get('username')
+        email = request.json.get('email')
         typed_password = request.json.get('password')
-        print(f"Username: {username}")
+        print(f"email: {email}")
         print(f"Password: {typed_password}")
-        if username and typed_password:
-            user = service.getuser(username)
+        if email and typed_password:
+            user = service.getuser(email)
             if pbkdf2_sha256.verify(typed_password, user['encrypted_password']):
                 session['user'] = user
                 return redirect('/home')
@@ -109,7 +109,7 @@ def register():
 @app.route('/home', methods=['GET'])
 def home():
     if 'user' in session:
-        user_id = session['user']['user_id']
+        #user_id = session['user']['user_id']
         service.getfeaturedevents()
         service.getmaps()
         return render_template('home.html')

@@ -103,15 +103,26 @@ $('#getCode').click(function() {
 document.getElementById('loginLink').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default anchor behavior
 
+    // Get the values from the input fields
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Prepare the data to be sent in the POST request
+    const loginData = {
+        email: email,
+        password: password
+    };
+
     fetch('/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        // If you need to send data in the POST request, you can include it in the body
-        // body: 'key=value&key2=value2'
+        // Convert the JavaScript object to a JSON string
+        body: JSON.stringify(loginData)
     }).then(response => {
         if (response.ok) {
+            console.log(loginData);
             return response.text(); // or response.json() if your server sends JSON
         }
         throw new Error('Network response was not ok.');
@@ -122,6 +133,7 @@ document.getElementById('loginLink').addEventListener('click', function(event) {
         console.error('There has been a problem with your fetch operation:', error);
     });
 });
+
 
 
 

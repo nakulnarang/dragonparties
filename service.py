@@ -9,8 +9,8 @@ def get_db():
         db = Database(db_path)
     return db
 
-def getuser(username):
-    return get_db().get_user(username)
+def getuser(email):
+    return get_db().get_user(email)
 
 def createuser(name, type, email, gender, username, encrypted_password):
     get_db().create_user(name, type, email, gender, username, encrypted_password)

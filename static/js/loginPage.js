@@ -13,24 +13,24 @@ document.getElementById('loginLink').addEventListener('click', function(event) {
         email: email,
         password: password
     };
-
     fetch('/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        // Convert the JavaScript object to a JSON string
         body: JSON.stringify(loginData)
-    }).then(response => {
+    })
+    .then(response => {
         if (response.ok) {
-            console.log(loginData);
-            return response.text(); // or response.json() if your server sends JSON
+            console.log('Login successful');
+            window.location.href = '/home'; // Redirect to the home page on successful login
+        } else {
+            console.log('Login unsuccessful');
+            // Handle unsuccessful login here (e.g., show error message)
+            alert('Login unsuccessful');
         }
-        throw new Error('Network response was not ok.');
-    }).then(html => {
-        // Process the response (e.g., redirect or update the page content)
-        window.location.href = '/home'; // Redirect to /home on successful POST
-    }).catch(error => {
+    })
+    .catch(error => {
         console.error('There has been a problem with your fetch operation:', error);
     });
 });

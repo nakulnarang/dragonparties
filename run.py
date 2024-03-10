@@ -146,5 +146,9 @@ def logout():
     session.pop('user', None)
     return redirect('/')
     
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

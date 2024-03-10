@@ -15,51 +15,18 @@
         <div class="login-container">
             <div class="login-box">
                 <!-- Login Form -->
-                <div>
-                  <ul id="progressbar" style="display: none;">
-                    <li class="active">Personal Details</li>
-                    <li>Credentials</li>
-                    <li>Verification</li>
-                  </ul>
-              </div>
-                <form id="loginForm">
+
+                <form id="loginForm", method="POST", action="">
+                    {{form.hidden_tag()}}
                     <h2 class="login-title">LOGIN</h2>
-                    <input type="email" id="email" placeholder="Enter your drexel email id" required>
-                    <input type="password" id="password" placeholder="Enter password" required>
-                    <!-- <button type="submit" hr>LOGIN</button> -->
-                    <a href="/home" class="login-btn">LOGIN</a>
-                    <p class="new-user">New User? <a href="#" id="showCreateUserForm1">Click Here.</a></p>
-                </form>
-
-                <!-- User Creation Form 1 -->
-                <form id="createUserForm1" class="form-content" style="display: none;">
-                  <h2 class="login-title">REGISTER</h2>
-                    <input type="text" id="firstName" placeholder="First Name" required>
-                    <input type="text" id="lastName" placeholder="Last Name" required>
-                    <input type="text" id="username" placeholder="Dragon Party Username" required>
-                    <select id="gender">
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">ApacheAttackHelicopter</option>
-                    </select>
-                    <button type="button" id="nextToForm2">Next</button>
-                </form>
-
-                <!-- User Creation Form 2 -->
-                <form id="createUserForm2" class="form-content" style="display: none;">
-                  <h2 class="login-title">REGISTER</h2>
-                    <input type="email" id="drexelEmail" placeholder="Drexel Email" required>
-                    <input type="password" id="password1" placeholder="Password" required>
-                    <input type="password" id="password2" placeholder="Re-enter Password" required>
-                    <button type="button" id="getCode">Get Code</button>
-                </form>
-
-                <!-- OTP Form -->
-                <form id="otpForm" class="form-content" style="display: none;">
-                    <input type="text" id="otp" placeholder="Enter OTP" required>
-                    
-                    <button type="submit" id="verifyOtp"><a href="/home" style="text-decoration: none; color: white;">Verify and Sign in</a></button>
+            <!--    <input type="email" id="email" placeholder="Enter your drexel email id" required> -->
+                    {{form.username}}
+            <!--    <input type="password" id="password" placeholder="Enter password" required> -->
+                    {{form.password}}
+                    <button type="submit" hr>{{form.submit.label}}</button> 
+            <!--    <a href="/home" class="login-btn">LOGIN</a> --> 
+              <!--      {{form.submit}} --> 
+                    <p class="new-user">New User? <a href={{url_for('registertest')}}>Click Here.</a></p>
                 </form>
 
                 <!-- Back Button (common to all forms except the first one) -->

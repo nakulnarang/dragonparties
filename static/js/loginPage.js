@@ -62,15 +62,18 @@ $(document).ready(function() {
         e.preventDefault();
     });
 });
-function submitPersonalDetails() {
+function submitAllDetails() {
     const formData = {
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
         username: document.getElementById('username').value,
-        gender: document.getElementById('gender').value
+        gender: document.getElementById('gender').value,
+        drexelEmail: document.getElementById('drexelEmail').value,
+        password1: document.getElementById('password1').value,
+        password2: document.getElementById('password2').value
     };
 
-    fetch('/submitPersonalDetails', {
+    fetch('/submitAllDetails', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -80,15 +83,21 @@ function submitPersonalDetails() {
     .then(response => response.json())
     .then(data => {
         console.log(data);
-        // Assuming the AJAX call is successful, manually transition to the next form
-        $('#createUserForm1').fadeOut(animationSpeed, function() {
-            $('#createUserForm2').fadeIn(animationSpeed);
-            setProgress(1); // Move the progress to the next step
+        // Assuming the AJAX call is successful, transition to the OTP form
+        $('#createUserForm2').fadeOut(animationSpeed, function() {
+            $('#otpForm').fadeIn(animationSpeed);
         });
+        setProgress(2); // Move the progress to the next step
     })
     .catch((error) => {
         console.error('Error:', error);
     });
 }
+
+$('#getCode').click(function() {
+    submitAllDetails(); // Call submitAllDetails when "Get Code" button is clicked
+});
+
+
 
 

@@ -24,7 +24,7 @@
               </div>
 
                 <!-- User Creation Form 1 -->
-                <form id="createUserForm1" class="form-content">
+                <form id="createUserForm1" class="form-content" >
                     <h2 class="login-title">REGISTER</h2>
                     <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
                     <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
@@ -35,7 +35,7 @@
                         <option value="female">Female</option>
                         <option value="other">Other</option>
                     </select>
-                    <button type="button" id="nextToForm2" onclick="submitPersonalDetails()">Next</button>
+                    <button type="button" id="nextToForm2">Next</button>
                 </form>
                 
 
@@ -50,6 +50,7 @@
 
                 <!-- OTP Form -->
                 <form id="otpForm" class="form-content" style="display: none;">
+                    <p id="otpSent">An OTP has been sent to your Drexel email. Please enter it below.</p>
                     <input type="text" id="otp" placeholder="Enter OTP" required>
                     
                     <button type="submit" id="verifyOtp"><a href="/home" style="text-decoration: none; color: white;">Verify and Sign in</a></button>

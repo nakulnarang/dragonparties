@@ -1,0 +1,27 @@
+<!-- home.html -->
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/eventCard.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<h2>Profile</h2>
+<div class="profile-container">
+    <div class="user-details">
+        <h1>User Profile</h1>
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Username:</strong> johndoe123</p>
+        <p><strong>Email:</strong> john.doe@example.com</p>
+    </div>
+
+    <h2>My RSVP'd Events</h2>
+    <div class="events-grid">
+      
+        <!-- Dynamically load event cards here -->
+    </div>
+
+    <button class="signout-button">Sign Out</button>
+</div>
+
+<script src="../static/js/profile.js"></script>
+{% endblock %}

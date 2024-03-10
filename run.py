@@ -58,5 +58,9 @@ def host():
 def viewEvents():
     return render_template('viewEvents.html')
     
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

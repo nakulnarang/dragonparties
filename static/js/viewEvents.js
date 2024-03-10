@@ -52,29 +52,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //     // Use the articleClass variable within the template literal
 //     card.innerHTML = `
-//     <article class="card__article ${articleClass}">
-//         <div class="card__scale-1"></div>
-//         <div class="card__scale-2"></div>
-//         <div class="card__default-content">
-//             <div class="card__shape-1">
-//                 <img src="../static/img/eventcards/${imageName}" alt="${event.title}">
-//             </div>
-//             <div class="card__data">
-//                 <h2 class="card__title">${event.title}</h2>
-//                 <p class="card__description">${event.description}</p>
-//             </div>
-//         </div>
-//         <div class="card__hover-content">
-//             <ul>
-//                 <li>Time: event.time</li>
-//                 <li>Location: </li>
-//                 <li>Venue: </li>
-//                 <li>Date:</li>
-//                 <li>Guest Count:</li>
-//                 <button class="card__rsvp-button" id = "rsvpbtn">RSVP</button>
-//             </ul>
-//         </div>
-//     </article>
+    // <article class="card__article ${articleClass}">
+    //     <div class="card__scale-1"></div>
+    //     <div class="card__scale-2"></div>
+    //     <div class="card__default-content">
+    //         <div class="card__shape-1">
+    //             <img src="../static/img/eventcards/${imageName}" alt="${event.title}">
+    //         </div>
+    //         <div class="card__data">
+    //             <h2 class="card__title">${event.title}</h2>
+    //             <p class="card__description">${event.description}</p>
+    //         </div>
+    //     </div>
+    //     <div class="card__hover-content">
+    //         <ul>
+    //             <li>Time: event.time</li>
+    //             <li>Location: </li>
+    //             <li>Venue: </li>
+    //             <li>Date:</li>
+    //             <li>Guest Count:</li>
+    //             <button class="card__rsvp-button" id = "rsvpbtn">RSVP</button>
+    //         </ul>
+    //     </div>
+    // </article>
 // `;
 // const rsvpButton = card.querySelector('.card__rsvp-button');
 // rsvpButton.addEventListener('click', function() {

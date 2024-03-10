@@ -1,0 +1,39 @@
+.profile-container {
+    max-width: 90vw;
+    margin: auto;
+    padding: 20px;
+    text-align: center; /* Center text within the container */
+}
+
+.user-details {
+    /* background-color: #000000; */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.events-grid {
+    width: 1500px;
+    align-items:baseline;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 90px; 
+    margin-top: 50px;
+}
+
+.signout-button {
+    display: block;
+    width: 200px; /* Set a specific width for the button */
+    padding: 10px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px auto; /* Center the button horizontally */
+}
+
+.signout-button:hover {
+    background-color: #c9302c;
+}

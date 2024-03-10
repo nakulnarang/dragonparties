@@ -2,20 +2,51 @@ document.getElementById('eventForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Prevent actual form submission
 
     // Simulating data collection from the form
-    const formData = {
-        eventName: document.getElementById('eventName').value,
-        location: document.getElementById('location').value,
-        dateTime: document.getElementById('eventDate').value,
-        dateTime: document.getElementById('eventTime').value,
-        capacity: document.getElementById('capacity').value,
-        ticketPrice: document.getElementById('ticketPrice').value,
-        eventDescription: document.getElementById('eventDescription').value,    
-        // For the image, we'd normally handle file uploads differently,
-        // but for the sake of this example, we're just acknowledging its presence.
-        eventImage: document.getElementById('eventImage').files[0] ? 'Image Uploaded' : 'No Image',
-    };
+    // const formData = {
+    //     eventName: document.getElementById('eventName').value,
+    //     location: document.getElementById('location').value,
+    //     date: document.getElementById('eventDate').value,
+    //     time: document.getElementById('eventTime').value,
+    //     capacity: document.getElementById('capacity').value,
+    //     ticketPrice: document.getElementById('ticketPrice').value,
+    //     eventDescription: document.getElementById('eventDescription').value,    
+    //     // For the image, we'd normally handle file uploads differently,
+    //     // but for the sake of this example, we're just acknowledging its presence.
+    //     eventImage: document.getElementById('eventImage').files[0],
+    // };
 
-    console.log(formData);
+    const formData = new FormData();  // Create a new FormData object
+
+    // Add form fields to the FormData object
+    formData.append('eventName', document.getElementById('eventName').value);
+    formData.append('location', document.getElementById('location').value);
+    formData.append('date', document.getElementById('eventDate').value);
+    formData.append('time', document.getElementById('eventTime').value);
+    formData.append('capacity', document.getElementById('capacity').value);
+    formData.append('ticketPrice', document.getElementById('ticketPrice').value);
+    formData.append('eventDescription', document.getElementById('eventDescription').value);
+
+    // Append the file to the FormData object
+    formData.append('eventImage', document.getElementById('eventImage').files[0]);
+    console.log(formData['eventImage']);
+
+
+    fetch('/createEvent', {
+        method: 'POST',
+        headers: {
+            // 'Content-Type': 'multipart/form-data'
+        },
+        body: formData
+      
+    })
+    console.log(JSON.stringify(formData))
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 
     // Here you would typically send the formData to your backend using AJAX, Fetch API, or similar
     alert('Event details submitted. Check the console for the form data.');

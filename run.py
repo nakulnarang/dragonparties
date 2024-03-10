@@ -96,19 +96,18 @@ def submitAllDetails():
     if request.method == 'POST':
         username = request.json.get('username')
         password = request.json.get('password1')
+        repassword = request.json.get('password2')
         email = request.json.get('drexelEmail')
-        #type = request.form.get('type')
+        # type = request.form.get('type')
         type = "guest"
         gender = request.json.get('gender')
         firstname = request.json.get('firstName')
         lastname = request.json.get('lastName')
-        print(f"Username: {username}")
-        print(f"Password: {password}")
-        print(f"Email: {email}")
-        print(f"Type: {type}")
-        print(f"gender: {gender}")
-        print(f"first name: {firstname}")
-        print(f"last name: {lastname}")
+        encrypted_password1 = pbkdf2_sha256.encrypt(password)
+        encrypted_password2 = pbkdf2_sha256.encrypt(repassword)
+        if encrypted_password1 != encrypted_password2:
+            message = "Passwords do not match"
+            return jsonify({'status': 'error', 'message': message})
         name = firstname + " " + lastname
         if username and password:
             encrypted_password = pbkdf2_sha256.encrypt(password)
@@ -123,25 +122,14 @@ def submitAllDetails():
 
 @app.route('/register')
 def register():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        email = request.form['email']
-        type = request.form['type']
-        gender = request.form['gender']
-        name = request.form['name']
-        if username and password:
-            encrypted_password = pbkdf2_sha256.encrypt(password)
-            service.createuser(name, type, email, gender, username, encrypted_password)
-            return redirect('/')
-    # print(request.form['email'])
     return render_template('register.html')
 
 @app.route('/home', methods=['GET'])
 def home():
     if 'user' in session:
         #user_id = session['user']['user_id']
-        service.getfeaturedevents()
+        featuredevents = service.getfeaturedevents()
+        print(f"featured events: {featuredevents}")
         service.getmaps()
         return render_template('home.html')
     else:
@@ -154,19 +142,31 @@ def host():
 @app.route('/createEvent', methods=['POST'])
 def createevent():
     if request.method == 'POST':
-        name = request.form['name']
-        capacity = request.form['capacity']
-        location = request.form['location']
-        image = request.form['image']
-        price = request.form['price']
-        host = request.form['host']
-        datetime = request.form['datetime']
-        desc = request.form['desc']
-        if name and capacity and location and image and price and host and datetime and desc:
-            service.createparty(name, capacity, location, image, price, host, datetime, desc)
+        name = request.form.get('eventName')
+        capacity = request.form.get('capacity')
+        location = request.form.get('location')
+        # image_name = request.json.get['image']
+        price = request.form.get('ticketPrice')
+        # host = request.json.get['host']
+        date = request.form.get('date')
+        time = request.form.get('time')
+        desc = request.form.get('eventDescription')
+        image = request.files['eventImage']
+        datetime = date + " " + time
+        
+        print(session['user'])
+        host = session['user']['id']
+
+        if 'eventImage' not in request.files:
+            img_path = service.generaterandomimage()
+        else:
+            img_path = service.saveimage(image)
+
+        if name and capacity and location and img_path and price and host and datetime and desc:
+            service.createparty(name, capacity, location, img_path, price, host, datetime, desc)
             return redirect('/home')
         else:
-            return jsonify('Error: Missing parameters') 
+            return jsonify('Error: Missing parameters')
 
 @app.route('/viewEvents')
 def viewevents():

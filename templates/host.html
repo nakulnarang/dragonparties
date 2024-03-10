@@ -21,7 +21,7 @@
                 <img src="../static/img/eventcards/${imageName}" alt="${event.title}">
             </div> -->
             <div class="card__data">
-                <form id="eventForm">
+                <form method="POST" id="eventForm" enctype="multipart/form-data">
 
                     <label for="eventName">Name of the Event:</label>
                     <input type="text" id="eventName" name="eventName">
@@ -44,7 +44,6 @@
 
                     <label for="eventDescription">Event Description:</label>
                     <textarea id="eventDescription" name="eventDescription" placeholder="Describe your event (30 words max)" maxlength="200"></textarea>
-
                 
                     <label for="eventImage">Upload Image:</label>
                     <input type="file" id="eventImage" name="eventImage" accept="image/jpeg, image/png">

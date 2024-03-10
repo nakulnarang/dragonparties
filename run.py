@@ -8,11 +8,6 @@ app = Flask(__name__)
 def login():
     return render_template('login.html')
 
-@app.route('/submitDetails', methods=['POST'])
-def submitDetails():
-    print(request.form['email'])
-    print(request.form['password'])
-    # return render_template('home.html')
     
 @app.route('/submitAllDetails', methods=['POST'])
 def submitAllDetails():

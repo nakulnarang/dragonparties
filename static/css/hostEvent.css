@@ -1,13 +1,22 @@
 @import url('hostEventCard.css');
 
+.main-container {
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    align-items: center;
+    text-align: center;
+}
 .container {
-    max-width: 600px;
+    /* max-width: 600px; */
+    min-height:1000px ;
     margin: auto;
     margin-top: 50px;
     background: #ffffff00;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 h1 {
@@ -155,4 +164,63 @@ input[type="file"]:focus {
 
 .custom-file-upload:hover {
     background: linear-gradient(to right, #0056b3, #a8a500);
+}
+
+.disclaimer-section {
+    align-self: center;
+    position: absolute;
+    text-align: center;
+    padding: 20px;
+    margin-top: 400px;
+    width: 700px;
+}
+
+.disclaimer-heading {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.disclaimer-text {
+    font-size: 14px;
+    background: -webkit-linear-gradient(114.5793141156962deg, #d6b600 4.927083333333334%, #0071e2 97.84374999999999%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.disclaimer-section {
+    text-align: center;
+    padding: 20px;
+    margin-top: 350px; /* Adjust the margin as needed */
+    width: 100%; /* Make the disclaimer section take full width */
+}
+
+.disclaimer-heading {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.disclaimer-text {
+
+    margin: 0 auto; /* Center the disclaimer text */
+    width: 80%; /* Adjust the width as needed */
+    max-width: 700px; /* Prevent the disclaimer from becoming too wide on large screens */
+}
+
+.details-text {
+
+        font-size: 24px;
+        /* Use a linear gradient with adjusted angles and color stops for better coverage */
+        background: linear-gradient(90deg, #d6b600 20%, #0071e2 80%);
+        /* Apply the gradient as a background clip */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* Make the text transparent to show the gradient */
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent; /* Fallback for non-webkit browsers */
+        text-align: center; /* Center the heading */
+       
+    
+    
 }

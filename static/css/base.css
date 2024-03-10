@@ -57,7 +57,9 @@ h1 {
 
 }
  .navbar-links a.active {
-    color: #FFD700; 
+    background: -webkit-linear-gradient(114.5793141156962deg, #d6b600 30%, #0071e2 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .user-dropdown {

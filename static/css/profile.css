@@ -6,12 +6,21 @@
 }
 
 .user-details {
-    /* background-color: #000000; */
-    padding: 20px;
     border-radius: 8px;
     margin-bottom: 20px;
 }
 
+.user-details p{
+     /* Use a linear gradient with adjusted angles and color stops for better coverage */
+     background: linear-gradient(90deg, #d6b600 40%, #0071e2 60%);
+     /* Apply the gradient as a background clip */
+     -webkit-background-clip: text;
+     background-clip: text;
+     /* Make the text transparent to show the gradient */
+     -webkit-text-fill-color: transparent;
+     text-fill-color: transparent; /* Fallback for non-webkit browsers */
+     text-align: center;
+}
 .events-grid {
     width: 1500px;
     align-items:baseline;

@@ -1,6 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // This is where you would fetch the RSVP'd events from your backend
-    // For this example, we're just creating dummy content
+    const userDetails = {
+        name: 'Sidhant Gumber',
+        username: 'janedoe123',
+        email: 'jane.doe@example.com'
+    };
+
+    // Populate user details
+    const userDetailsContainer = document.querySelector('.user-details');
+    userDetailsContainer.innerHTML = `
+        <h1>User Profile</h1>
+        <p><strong>Name:</strong> ${userDetails.name}</p>
+        <p><strong>Username:</strong> ${userDetails.username}</p>
+        <p><strong>Email:</strong> ${userDetails.email}</p>
+    `;
+
     const eventsGrid = document.querySelector('.events-grid');
 
     // Dummy RSVP'd events

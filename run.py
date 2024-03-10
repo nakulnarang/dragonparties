@@ -105,14 +105,14 @@ def submitAllDetails():
         lastname = request.json.get('lastName')
         encrypted_password1 = pbkdf2_sha256.encrypt(password)
         encrypted_password2 = pbkdf2_sha256.encrypt(repassword)
-        if encrypted_password1 != encrypted_password2:
-            message = "Passwords do not match"
-            return jsonify({'status': 'error', 'message': message})
+        # if encrypted_password1 != encrypted_password2:
+        #     message = "Passwords do not match"
+        #     return jsonify({'status': 'error', 'message': message})
         name = firstname + " " + lastname
         if username and password:
             encrypted_password = pbkdf2_sha256.encrypt(password)
             service.createuser(name, type, email, gender, username, encrypted_password)
-
+            print("User created")
             return redirect('/')
 
     return render_template('register.html')

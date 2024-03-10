@@ -111,6 +111,7 @@ class Database:
 
     def create_user(self, name, type, email, gender, username, encrypted_password):
         self.execute('INSERT INTO user (name, type, email, gender, username, encrypted_password) VALUES (?, ?, ?, ?, ?, ?)', [name, type, email, gender, username, encrypted_password])
+        print("User created yay")
 
     def create_party(self, party_name, location, capacity, image, desc, price, host, datetime):
         self.execute('INSERT INTO party (party_name, location, capacity, image, desc, price, host, datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [party_name, location, capacity, image, desc, price, host, datetime])

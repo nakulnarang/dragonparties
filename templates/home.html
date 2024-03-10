@@ -3,56 +3,63 @@
 {% extends 'base.html' %}
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-    <div class="featured-events">
-        <h2>FEATURED EVENTS</h2>
-        <div class="event-card">
-            <img src="{{ url_for('static', filename='img/eventcards/card1.png') }}" alt="Neon Party">
-            <div class="event-info">
-                <h3>Neon Party</h3>
-                <p>9 Feb, Friday</p>
-           
+<link rel="stylesheet" href="{{ url_for('static', filename='css/eventCard.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<div class = "home-wrapper">
+    <div class="fade-in-section">
+        <div class="wrapper">
+            <div class="neon-wrapper">
+                <span class="txt1" >“Ambition can’t wait”</span>
+                <span class="gradient"></span>
+                <span class="dodge1"></span>
             </div>
-            <div class="more-info" style="display: none;"> <!-- Hidden by default -->
-                <p>Additional event details...</p>
-                <p>Additional event details...</p>
-                <p>Additional event details...</p>
-                <button class="rsvp-btn">RSVP</button>
+            <div class="neon-wrapper">
+                <span class="txt2" >-Drexel University</span>
+                <span class="gradient"></span>
+                <span class="dodge1"></span>
             </div>
-        </div>
-        <div class="event-card">
-            <img src="{{ url_for('static', filename='img/eventcards/card2.png') }}" alt="Mardi Gras Madness">
-            <div class="event-info">
-                <h3>Mardi Gras Madness</h3>
-                <p>15 Feb, Thursday</p>
+            <div class="neon-wrapper">
+                <span class="txt3" >“But neither can parties”</span>
+                <span class="gradient"></span>
+                <span class="dodge2"></span>
             </div>
-            <div class="more-info" style="display: none;"> <!-- Hidden by default -->
-                <p>Additional event details...</p>
-                <p>Additional event details...</p>
-                <p>Additional event details...</p>
-                <button class="rsvp-btn">RSVP</button>
+            <div class="neon-wrapper">
+                <span class="txt4" >-Team Dragon Parties</span>
+                <span class="gradient"></span>
+                <span class="dodge2"></span>
             </div>
-        </div>
-        <div class="event-card">
-            <img src="{{ url_for('static', filename='img/eventcards/card3.png') }}" alt="Drake Night">
-            <div class="event-info">
-                <h3>Drake Night</h3>
-                <p>22 Feb, Thursday</p>
-             
+
+            <div class="button-container">
+                <button id="scrollToFeatured">Featured Events</button>
+                <a href="/viewEvents" class="button">View Events</a>
             </div>
-            <div class="more-info" style="display: none;"> <!-- Hidden by default -->
-                <p>Additional event details...</p>
-                <p>Additional event details...</p>
-                <p>Additional event details...</p>
-                <button class="rsvp-btn">RSVP</button>
+            <div class="mission-statement">
+                <h2 class="mission-heading">Our Mission</h2>
+                <p class="mission-text">
+                    At Dragon Parties, we strive to connect the Drexel community through engaging and unforgettable events, fostering a vibrant campus life and building lasting memories.
+                </p>
             </div>
         </div>
     </div>
-    <div class="map-container">
-        <h2>NEARBY PARTIES</h2>
-        <div id="map">
+    <div class="fade-in-section">
+        <div class="featured-events">
+                <h2>FEATURED EVENTS</h2>
+
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../static/js/home.js"></script>
-        
+    <div class="fade-in-section">    
+        <div class="map-container">
+            <h2>NEARBY PARTIES</h2>
+            <div id="map">
+            </div>
+        </div>
+    </div>
+ 
+   
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type = "module" src="../static/js/scrollAnimation.js"></script>
+<script type = "module" src="../static/js/home.js"></script> 
 {% endblock %}

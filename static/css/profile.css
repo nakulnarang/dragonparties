@@ -22,6 +22,7 @@
      text-align: center;
 }
 .events-grid {
+    align-self: center;
     width: 1500px;
     align-items:baseline;
     display: flex;

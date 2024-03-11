@@ -269,6 +269,7 @@ def rsvp():
 @app.route('/logout')
 def logout():
     session.pop('user', None)
+    print("Logged out successfully")
     return redirect('/')
     
 @app.route('/profile')

@@ -1,5 +1,6 @@
 
 import { createEventCard } from '../js/eventCard.js';
+import { showRsvpContents } from '../js/eventCard.js';
 // function fetchEvents() {
 //     // Dummy data for now later implemennt fetching from the server
 //     // const events = [

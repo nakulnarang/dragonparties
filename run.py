@@ -39,8 +39,6 @@ def create_folium_map(locations):
 
     return iframe
 
-
-
 def add_marker(my_map, location, popup_text):  
       
     folium.Marker(
@@ -247,12 +245,12 @@ def getevents():
 
     for i in range(len(events)):
         events[i]["image"] = imgs[i]
-    # events_json = json.dumps(events)  # Convert the events data to a JSON string
+    # events_json = json.dumps(events)  
     return jsonify(events)
 
 @app.route('/viewEvents')
 def viewevents():
-    # events_json = json.dumps(events)  # Convert the events data to a JSON string
+    # events_json = json.dumps(events) 
     return render_template('viewEvents.html')
 
 @app.route('/home/rsvp', methods=['POST'])
@@ -262,22 +260,6 @@ def rsvp():
         user_id = session['user']['id']
         service.createmapping(party_id, user_id)
         return jsonify({'status': 'success', 'message': 'RSVP successful'}), 201
-    
-@app.route('/profile/rsvps', methods=['GET'])
-def rsvplist():
-    user_id = session['user']['id']
-    rsvps = service.getrsvps(user_id)
-    if len(rsvps) == 0:
-        return jsonify({'status': 'error', 'message': 'No RSVPs found'}), 404
-    return jsonify(rsvps)
-
-@app.route('/profile/hosted', methods=['GET'])
-def hostedlist():
-    user_id = session['user']['id']
-    parties = service.gethostparties(user_id)
-    if len(parties) == 0:
-        return jsonify({'status': 'error', 'message': 'No Hosted parties found'}), 404
-    return jsonify(parties)
 
 @app.route('/logout')
 def logout():

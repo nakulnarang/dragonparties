@@ -24,6 +24,7 @@ function resetProgress(stepIndex) {
 $(document).ready(function() {
     setProgress(0);
 
+ 
     function updateButtonState(formId, buttonId, errorDivId) {
         let isFormFilled = true;
         let firstEmptyInput = null;
@@ -37,6 +38,7 @@ $(document).ready(function() {
                 }
             }
         });
+   
         console.log(`isFormFilled: ${isFormFilled}, firstEmptyInput: ${firstEmptyInput}`); // Debugging line
         if (isFormFilled) {
             $(`#${buttonId}`).prop('disabled', false);
@@ -52,10 +54,20 @@ $(document).ready(function() {
     // Use this updated function for the event listeners
     $('#createUserForm1 :input').on('input', function() {
         updateButtonState('createUserForm1', 'nextToForm2', 'createUserForm1Error');
+  
     });
     $('#createUserForm2 :input').on('input', function() {
-        updateButtonState('createUserForm2', 'getCode', 'createUserForm2Error');
+        var email = $('#drexelEmail').val();
+        var isDrexelEmail = email.endsWith('@drexel.edu');
+        if (!isDrexelEmail) {
+            $('#createUserForm2Error').text('Please use a Drexel email address.');
+            $('#getCode').prop('disabled', true);
+        } else {
+            $('#createUserForm2Error').text('');
+            updateButtonState('createUserForm2', 'getCode', 'createUserForm2Error');
+        }
     });
+    
     // $('#otpForm :input').on('input', function() {
     //     console.log('OTP input changed'); // Add this line for debugging
     //     updateButtonState('otpForm', 'verifyOtp', 'otpFormError');

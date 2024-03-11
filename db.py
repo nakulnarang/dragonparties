@@ -34,6 +34,13 @@ class Database:
             'username': data[0][5],
             'encrypted_password': data[0][6]
         }
+    def get_party_locations(self):
+        data = self.select('SELECT DISTINCT location FROM party')
+        return [d[0] for d in data]
+    
+    def get_party_images(self):
+        data = self.select('SELECT image FROM party')
+        return [d[0] for d in data]
 
     def get_all_events(self):
         data = self.select(

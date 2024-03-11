@@ -44,6 +44,7 @@ export function createEventCard(event, index) {
 
     const rsvpButton = card.querySelector('.card__rsvp-button');
     rsvpButton.addEventListener('click', function() {
+        console.log('RSVP clicked for:', event.title, 'Index:', index);
         showRsvpContents(this, card, event,index); // Show the sticker
 
         fetch('/home/rsvp', {
@@ -76,18 +77,21 @@ export function createEventCard(event, index) {
         return response.json();
     })
     .then(data => {
+        // console.log('RSVPs:', data);
+        // console.log('Event ID:', event.party_id);
+        // console.log('---------------');
         data.forEach(data => {
+            console.log("Party ID which userr rsvp'd", data.id);
             if (data.id === event.party_id) {
 
-                // console.log('Party ID matches card ID:', data);
-                // showRsvpContents(this, card, event,index);
-                // Perform actions here if party ID matches card ID
-                // console.log(data.id);
+            //     // console.log('Party ID matches card ID:', data);
+            //     // showRsvpContents(this, card, event,index);
+            //     // Perform actions here if party ID matches card ID
+            //     // console.log(data.id);
                 showRsvpContents(rsvpButton, card, event, index);
             }
-        });
-        console.log('RSVPs:', data);
-        
+        });      
+        console.log('Current Event Card Party ID:', event.party_id);  
         // Process the RSVP data here
     })
     .catch(error => {
@@ -100,7 +104,7 @@ export function createEventCard(event, index) {
 }
 
 export function showRsvpContents(button, card, event, index) {
-    console.log('RSVP clicked for:', event.title, 'Index:', index);
+   
     button.classList.add('disabled');
     button.disabled = true; // Disable the button
     button.textContent = 'Attending'; // Change button text to "Attending"

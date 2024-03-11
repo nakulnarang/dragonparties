@@ -129,7 +129,7 @@ class Database:
         return [d[0] for d in data]
     
     def get_user_rsvp(self, uid):
-        data = self.select('SELECT party_name, party_id, location, capacity, price, host, datetime, desc FROM mappingtable JOIN party WHERE attendees=?', [uid])
+        data = self.select('SELECT party_name, party_id, location, capacity, price, attendees, host, datetime, desc FROM mappingtable LEFT JOIN party ON mappingtable.party=party.party_id WHERE attendees = ?', [uid])
         return [{
             'name':d[0],
             'id':d[1],

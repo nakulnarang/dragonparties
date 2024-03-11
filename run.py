@@ -192,6 +192,20 @@ def home():
 @app.route('/home/featurelist', methods=['GET'])
 def featuredlist():
     featuredevents = service.getfeaturedevents()
+    print(f"Featuredevents: {featuredevents}")
+
+    img_paths = [event["image"] for event in featuredevents]
+    imgs = []
+    for img_path in img_paths:
+        with open(img_path, 'rb') as f:
+            img = f.read()
+
+        img_base64 = base64.b64encode(img).decode('utf-8')
+        imgs.append(img_base64)
+
+    for i in range(len(featuredevents)):
+        featuredevents[i]["image"] = imgs[i]
+
     if len(featuredevents) == 0:
         return jsonify({'status': 'error', 'message': 'No featured parties found'}), 404
     return jsonify(featuredevents)
@@ -285,23 +299,6 @@ def profile():
         return render_template('profile.html', user_details = user_details)
     return render_template('login.html')
 
-@app.route('/profile/rsvps', methods=['GET'])
-def rsvplist():
-    user_id = session['user']['id']
-    rsvps = service.getrsvps(user_id)
-    print(f"rsvps: {rsvps}")
-    if len(rsvps) == 0:
-        return jsonify({'status': 'error', 'message': 'No RSVPs found'}), 404
-    return jsonify(rsvps)
-
-@app.route('/profile/hosted', methods=['GET'])
-def hostedlist():
-    user_id = session['user']['id']
-    parties = service.gethostparties(user_id)
-    print(f"hosted parties: {parties}")
-    if len(parties) == 0:
-        return jsonify({'status': 'error', 'message': 'No Hosted parties found'}), 404
-    return jsonify(parties)
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

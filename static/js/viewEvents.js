@@ -68,15 +68,19 @@ function fetchEvents() {
    
 }
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     fetchEvents();
-// });
+
 document.addEventListener('DOMContentLoaded', function() {
     fetchEvents();
 
     // check
     console.log('Events fetched');
 });
+
+
+
+
+
+
 
 // function createEventCard(event, index) {
 //     const card = document.createElement('div');

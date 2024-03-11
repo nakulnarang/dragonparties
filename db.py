@@ -76,19 +76,19 @@ class Database:
     
     def get_event(self, id):
         data = self.select('SELECT * FROM party WHERE party_id=?', [id])
-        print(f"Data: {data}")
+        # print(f"Data: {data}")
         if len(data) == 0:
             return None
         return {
             'party_id': data[0][0],
             'party_name': data[0][1],
-            'capacity': data[0][2],
-            'location': data[0][3],
-            'image': data[0][4],
-            'price': data[0][5],
-            'host': data[0][6],
-            'datetime': data[0][7],
-            'desc': data[0][8] 
+            'location': data[0][2],
+            'capacity': data[0][3],
+            'price': data[0][4],
+            'host': data[0][5],
+            'datetime': data[0][6],
+            'desc': data[0][7],
+            'image': data[0][8] 
         }
         
     

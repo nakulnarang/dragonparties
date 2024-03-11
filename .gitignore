@@ -1,4 +1,7 @@
-
+uploads/
 dragonparties.db
 dragonpartiestest.db
 *.db
+__pycache__/
+*.pyc
+venv/

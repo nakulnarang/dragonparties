@@ -1,6 +1,7 @@
 import os
 import service
 import random
+import base64
 from passlib.hash import pbkdf2_sha256
 from flask import Flask, g, json, render_template, request, redirect, session, jsonify, url_for
 from flask_mail import Mail, Message
@@ -193,6 +194,17 @@ def createevent():
 @app.route('/getEvents')
 def getevents():
     events = service.getevents()
+    img_paths = [event["image"] for event in events]
+    imgs = []
+    for img_path in img_paths:
+        with open(img_path, 'rb') as f:
+            img = f.read()
+
+        img_base64 = base64.b64encode(img).decode('utf-8')
+        imgs.append(img_base64)
+
+    for i in range(len(events)):
+        events[i]["image"] = imgs[i]
     # events_json = json.dumps(events)  # Convert the events data to a JSON string
     return jsonify(events)
 

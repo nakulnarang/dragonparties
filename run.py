@@ -117,8 +117,10 @@ def submitAllDetails():
         gender = request.json.get('gender')
         firstname = request.json.get('firstName')
         lastname = request.json.get('lastName')
+
         # encrypted_password1 = pbkdf2_sha256.encrypt(password)
         # encrypted_password2 = pbkdf2_sha256.encrypt(repassword)
+
         # if encrypted_password1 != encrypted_password2:
         #     message = "Passwords do not match"
         #     return jsonify({'status': 'error', 'message': message})

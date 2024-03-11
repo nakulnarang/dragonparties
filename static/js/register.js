@@ -146,6 +146,7 @@ function sendEmail() {
             if (data.status === 'success') {
                 // OTP verified successfully
                 console.log('OTP verified in JS: Redirecting to /home...');
+                window.location.href = '/'; 
                 createUser();
                
             } else {

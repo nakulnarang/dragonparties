@@ -93,7 +93,7 @@ class Database:
         
     
     def get_featured_events(self):
-        data = self.select('SELECT COUNT(*) as party_count, party FROM mappingtable ORDER BY party DESC LIMIT 3')
+        data = self.select('SELECT COUNT(attendees) as party_count, party FROM mappingtable GROUP BY party ORDER BY party_count DESC')
         return [{
             'party_count': d[0],
             'party': d[1]
@@ -129,7 +129,7 @@ class Database:
         return [d[0] for d in data]
     
     def get_user_rsvp(self, uid):
-        data = self.select('SELECT party_name, party_id, location, capacity, price, host, datetime, desc FROM mappingtable JOIN party WHERE attendees=?', [uid])
+        data = self.select('SELECT party_name, party_id, location, capacity, price, attendees, host, datetime, desc FROM mappingtable LEFT JOIN party ON mappingtable.party=party.party_id WHERE attendees = ?', [uid])
         return [{
             'name':d[0],
             'id':d[1],

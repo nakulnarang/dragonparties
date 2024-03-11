@@ -37,7 +37,8 @@ def editparty():
     pass
 
 def getfeaturedevents():
-    featuredevents = get_db().get_featured_events()
+
+    featuredevents = get_db().get_featured_events()[:3]
     fe = []
     for event in featuredevents:
         id = event['party']

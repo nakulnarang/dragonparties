@@ -69,18 +69,19 @@ class Database:
     
     def get_event(self, id):
         data = self.select('SELECT * FROM party WHERE party_id=?', [id])
+        print(f"Data: {data}")
         if len(data) == 0:
             return None
         return {
-            'party_id': data[0],
-            'party_name': data[1],
-            'capacity': data[2],
-            'location': data[3],
-            'image': data[4],
-            'price': data[5],
-            'host': data[6],
-            'datetime': data[7],
-            'desc': data[8] 
+            'party_id': data[0][0],
+            'party_name': data[0][1],
+            'capacity': data[0][2],
+            'location': data[0][3],
+            'image': data[0][4],
+            'price': data[0][5],
+            'host': data[0][6],
+            'datetime': data[0][7],
+            'desc': data[0][8] 
         }
         
     
@@ -132,6 +133,9 @@ class Database:
             'datetime':d[6],
             'desc':d[7]
             } for d in data]
+
+    def create_mapping(self, party, user):
+        self.execute('INSERT INTO mappingtable (party, attendees) VALUES (?, ?)', [party, user])
 
     def close(self):
         self.conn.close()

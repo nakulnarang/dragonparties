@@ -62,4 +62,7 @@ def saveimage(file):
 
 def generaterandomimage():
     return 'uploads/default.jpg'
+
+def createmapping(party, attendee):
+    get_db().create_mapping(party, attendee)
     

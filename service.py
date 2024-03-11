@@ -36,13 +36,7 @@ def deleteparty():
 def editparty():
     pass
 
-def getmaps():
-    pass
-
 def getfeaturedevents():
-    #featuredevents = get_db().get_party_rsvp_count()[0:3];
-    #print(f"featured events: {featuredevents}")
-    #print(type(featuredevents))
     featuredevents = get_db().get_featured_events()
     fe = []
     for event in featuredevents:
@@ -71,7 +65,8 @@ def generaterandomimage():
 
 
 def getpartyid(party_name, location, capacity, price, host, datetime):
-    return get_db().select_party_for_mapping(party_name, location, capacity, price, host, datetime)
+    data = get_db().select_party_for_mapping(party_name, location, datetime, host, capacity, price)
+    return data[0]["party_id"]
 
 def createmapping(party, attendee):
     get_db().create_mapping(party, attendee)

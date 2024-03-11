@@ -144,7 +144,6 @@ def submitAllDetails():
         password = request.json.get('password1')
         repassword = request.json.get('password2')
         email = request.json.get('drexelEmail')
-        # type = request.form.get('type')
         type = "guest"
         gender = request.json.get('gender')
         firstname = request.json.get('firstName')
@@ -176,10 +175,6 @@ def register():
 @app.route('/home', methods=['GET'])
 def home():
     if 'user' in session:
-        #user_id = session['user']['id']
-        featuredevents = service.getfeaturedevents()
-        print(f"session after logging in: {session['user']}")
-        print(f"featured events: {featuredevents}")
         
         locations = getlocations()
         all_coordinates = []
@@ -190,11 +185,17 @@ def home():
             
         iframe = create_folium_map(all_coordinates)
         return render_template('home.html', iframe= iframe)
-        #service.getmaps()
         
     else:
         return jsonify('Error: User not authenticated')
         
+@app.route('/home/featurelist', methods=['GET'])
+def featuredlist():
+    featuredevents = service.getfeaturedevents()
+    if len(featuredevents) == 0:
+        return jsonify({'status': 'error', 'message': 'No featured parties found'}), 404
+    return jsonify(featuredevents)
+
 @app.route('/host')
 def host():
     return render_template('host.html')
@@ -205,21 +206,18 @@ def createevent():
         name = request.form.get('eventName')
         capacity = request.form.get('capacity')
         location = request.form.get('location')
-        # image_name = request.json.get['image']
         price = request.form.get('ticketPrice')
-        # host = request.json.get['host']
         date = request.form.get('date')
         time = request.form.get('time')
         desc = request.form.get('eventDescription')
-        image = request.files['eventImage']
         datetime = date + " " + time
         
-        print(session['user'])
         host = session['user']['id']
 
         if 'eventImage' not in request.files:
             img_path = service.generaterandomimage()
         else:
+            image = request.files['eventImage']
             img_path = service.saveimage(image)
 
         if name and capacity and location and img_path and price and host and datetime and desc:
@@ -245,12 +243,10 @@ def getevents():
 
     for i in range(len(events)):
         events[i]["image"] = imgs[i]
-    # events_json = json.dumps(events)  
     return jsonify(events)
 
 @app.route('/viewEvents')
 def viewevents():
-    # events_json = json.dumps(events) 
     return render_template('viewEvents.html')
 
 @app.route('/home/rsvp', methods=['POST'])
@@ -261,10 +257,25 @@ def rsvp():
         service.createmapping(party_id, user_id)
         return jsonify({'status': 'success', 'message': 'RSVP successful'}), 201
 
+@app.route('/profile/rsvps', methods=['GET'])
+def rsvplist():
+    user_id = session['user']['id']
+    rsvps = service.getrsvps(user_id)
+    if len(rsvps) == 0:
+        return jsonify({'status': 'error', 'message': 'No RSVPs found'}), 404
+    return jsonify(rsvps)
+
+@app.route('/profile/hosted', methods=['GET'])
+def hostedlist():
+    user_id = session['user']['id']
+    parties = service.gethostparties(user_id)
+    if len(parties) == 0:
+        return jsonify({'status': 'error', 'message': 'No Hosted parties found'}), 404
+    return jsonify(parties)    
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)
-    print("Logged out successfully")
     return redirect('/')
     
 @app.route('/profile')

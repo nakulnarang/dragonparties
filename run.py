@@ -258,6 +258,13 @@ def viewevents():
     # events_json = json.dumps(events)  # Convert the events data to a JSON string
     return render_template('viewEvents.html')
 
+@app.route('/home/rsvp', methods=['POST'])
+def rsvp():
+    if request.method == 'POST':
+        party_id = request.json.get('party_id')
+        user_id = session['user']['id']
+        service.createmapping(party_id, user_id)
+        return jsonify({'status': 'success', 'message': 'RSVP successful'}), 201
 
 @app.route('/logout')
 def logout():

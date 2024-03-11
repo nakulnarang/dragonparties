@@ -52,6 +52,26 @@ export function createEventCard(event, index) {
         this.style.color = '#FFFFFF'; // White text
         const sticker = card.querySelector('.card__sticker'); // Get the sticker element
         sticker.style.display = 'block'; // Show the sticker
+
+        fetch('/home/rsvp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ party_id: event.party_id}), // Replace YOUR_PARTY_ID with the actual party ID
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('RSVP failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // Log the response from the server
+        })
+        .catch(error => {
+            console.error('Error RSVPing:', error);
+        });
     });
 
     return card;

@@ -21,7 +21,7 @@ export function createEventCard(event, index) {
     <div class="card__scale-2"></div>
     <div class="card__default-content">
         <div class="card__shape-1">
-            <img src="../${event.image}" alt="${event.party_name}">
+        <img src="data:image/jpeg;base64,${event.image}" alt="${event.party_name}">
         </div>
         <div class="card__data">
             <h2 class="card__title">${event.party_name}</h2>

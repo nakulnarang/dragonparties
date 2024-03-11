@@ -1,8 +1,2 @@
 
-dragonparties.db
-dragonpartiestest.db
-*.db
 /venv
-/__pycache__
-/__pycache__
-*.pyc

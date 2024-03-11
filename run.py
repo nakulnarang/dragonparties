@@ -272,7 +272,7 @@ def rsvplist():
     return jsonify(rsvps)
 
 @app.route('/profile/hosted', methods=['GET'])
-def rsvplist():
+def hostedlist():
     user_id = session['user']['id']
     parties = service.gethostparties(user_id)
     if len(parties) == 0:

@@ -66,6 +66,35 @@ export function createEventCard(event, index) {
             console.error('Error RSVPing:', error);
         });
     });
+    fetch('/profile/rsvps', {
+        method: 'GET',
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch RSVPs');
+        }
+        return response.json();
+    })
+    .then(data => {
+        data.forEach(data => {
+            if (data.id === event.party_id) {
+
+                // console.log('Party ID matches card ID:', data);
+                // showRsvpContents(this, card, event,index);
+                // Perform actions here if party ID matches card ID
+                // console.log(data.id);
+                showRsvpContents(rsvpButton, card, event, index);
+            }
+        });
+        console.log('RSVPs:', data);
+        
+        // Process the RSVP data here
+    })
+    .catch(error => {
+        console.error('Error fetching RSVPs:', error);
+    });
+    
+    
 
     return card;
 }

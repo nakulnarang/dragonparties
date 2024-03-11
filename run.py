@@ -26,7 +26,6 @@ app.config['MAIL_PASSWORD'] = 'bols vdqb noaq melw'
 def create_folium_map(locations):
      # Create Folium map centered at the first location
      my_map = folium.Map(location=[locations[0].latitude, locations[0].longitude], zoom_start=12, tiles='CartoDB dark_matter')
-    
      # Add markers for each location
      for location in locations:
          address = location.address if location.address else "Unknown Address"
@@ -226,7 +225,9 @@ def createevent():
             img_path = service.saveimage(image)
 
         if name and capacity and location and img_path and price and host and datetime and desc:
-            service.createparty(name, location, capacity,price ,host, datetime, desc, img_path)
+            service.createparty(name, location, capacity, price ,host, datetime, desc, img_path)
+            p_id = service.getpartyid(name, location, capacity, price, host, datetime)
+            service.createmapping(p_id, host)
             return jsonify({'status': 'success', 'message': 'Creating event successful'}), 200
         else:
             print('Error: Missing parameters')
@@ -281,11 +282,15 @@ def rsvplist():
 @app.route('/logout')
 def logout():
     session.pop('user', None)
+    print("Logged out successfully")
     return redirect('/')
     
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    if 'user' in session:
+        user_details = session['user']
+        return render_template('profile.html', user_details = user_details)
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

@@ -140,6 +140,15 @@ class Database:
             'datetime':d[6],
             'desc':d[7]
             } for d in data]
+    
+    def create_mapping(self, party, attendees):
+            self.execute('INSERT INTO mappingtable (party, attendees) VALUES (?, ?)', [party, attendees])
+        
+    def select_party_for_mapping(self, party_name, location, datetime, host, capacity, price):
+            parameters = (party_name, location, datetime, host, capacity, price)  # Convert to tuple
+            print(parameters)
+            data = self.select('SELECT party_id FROM party WHERE party_name=? AND location=? AND datetime=? AND host=? AND capacity=? AND price=?', parameters)
+            return data
 
     def create_mapping(self, party, user):
         self.execute('INSERT INTO mappingtable (party, attendees) VALUES (?, ?)', [party, user])
@@ -159,4 +168,4 @@ class Database:
         } for d in data]
 
     def close(self):
-        self.conn.close()
+            self.conn.close()

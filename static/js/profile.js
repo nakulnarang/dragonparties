@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Populate user details
-    const userDetailsContainer = document.querySelector('.user-details');
-    userDetailsContainer.innerHTML = `
-        <h1>User Profile</h1>
-        <p><strong>Name:</strong> ${userDetails.name}</p>
-        <p><strong>Username:</strong> ${userDetails.username}</p>
-        <p><strong>Email:</strong> ${userDetails.email}</p>
-    `;
+    // const userDetailsContainer = document.querySelector('.user-details');
+    // userDetailsContainer.innerHTML = `
+    //     <h1>User Profile</h1>
+    //     <p><strong>Name:</strong> ${userDetails.name}</p>
+    //     <p><strong>Username:</strong> ${userDetails.username}</p>
+    //     <p><strong>Email:</strong> ${userDetails.email}</p>
+    // `;
 
     const eventsGrid = document.querySelector('.events-grid1');
 

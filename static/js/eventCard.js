@@ -30,10 +30,9 @@ export function createEventCard(event, index) {
     </div>
     <div class="card__hover-content">
         <ul>
-            <li>Time: ${event.time}</li>
             <li>Location: ${event.location}</li>
-            <li>Entry Price: ${event.price}</li>
-            <li>Date/Time: ${event.datetime}</li>
+            <li>Entry Price: $${event.price}</li>
+            <li>Date: ${event.datetime}</li>
         </ul>
         <div class="button-container">
              <button class="card__rsvp-button">RSVP</button>
@@ -45,14 +44,7 @@ export function createEventCard(event, index) {
 
     const rsvpButton = card.querySelector('.card__rsvp-button');
     rsvpButton.addEventListener('click', function() {
-        console.log('RSVP clicked for:', event.title, 'Index:', index);
-        this.classList.add('disabled');
-        this.disabled = true; // Disable the button
-        this.textContent = 'Attending'; // Change button text to "Attending"
-        // this.style.backgroundColor = '#808080'; // Grey background
-        this.style.color = '#FFFFFF'; // White text
-        const sticker = card.querySelector('.card__sticker'); // Get the sticker element
-        sticker.style.display = 'block'; // Show the sticker
+        showRsvpContents(this, card, event,index); // Show the sticker
 
         fetch('/home/rsvp', {
             method: 'POST',
@@ -76,4 +68,16 @@ export function createEventCard(event, index) {
     });
 
     return card;
+}
+
+export function showRsvpContents(button, card, event, index) {
+    console.log('RSVP clicked for:', event.title, 'Index:', index);
+    button.classList.add('disabled');
+    button.disabled = true; // Disable the button
+    button.textContent = 'Attending'; // Change button text to "Attending"
+
+    // this.style.backgroundColor = '#808080'; // Grey background
+    button.style.color = '#FFFFFF'; // White text
+    const sticker = card.querySelector('.card__sticker'); // Get the sticker element
+    sticker.style.display = 'block';
 }

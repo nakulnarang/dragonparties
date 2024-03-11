@@ -24,20 +24,20 @@ app.config['MAIL_USERNAME'] = 'teamdragonparties@gmail.com'
 app.config['MAIL_PASSWORD'] = 'bols vdqb noaq melw'
 
 def create_folium_map(locations):
-     # Create Folium map centered at the first location
-     my_map = folium.Map(location=[locations[0].latitude, locations[0].longitude], zoom_start=12, tiles='CartoDB dark_matter')
-     # Add markers for each location
-     for location in locations:
-         address = location.address if location.address else "Unknown Address"
-         add_marker(my_map, location, address)
+    if not locations:
+        return folium.Map(location=[0, 0], zoom_start=2, tiles='CartoDB dark_matter')._repr_html_()
 
-     # Save the map as an HTML string
-     my_map.get_root().width = '1000px'
-     my_map.get_root().height = "500px"
-     iframe = my_map.get_root()._repr_html_()
-     #map_html = my_map.get_root().render()
 
-     return iframe
+    my_map = folium.Map(location=[locations[0].latitude, locations[0].longitude], zoom_start=12, tiles='CartoDB dark_matter')
+    for location in locations:
+        address = location.address if location.address else "Unknown Address"
+        add_marker(my_map, location, address)
+
+    my_map.get_root().width = '1000px'
+    my_map.get_root().height = "500px"
+    iframe = my_map.get_root()._repr_html_()
+
+    return iframe
 
 
 

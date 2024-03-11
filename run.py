@@ -172,9 +172,6 @@ def submitAllDetails():
 
     return jsonify({'status': 'error', 'message': 'Invalid request method'}), 405
 
-
-
-
 @app.route('/register')
 def register():
     return render_template('register.html')
@@ -264,6 +261,22 @@ def rsvp():
         user_id = session['user']['id']
         service.createmapping(party_id, user_id)
         return jsonify({'status': 'success', 'message': 'RSVP successful'}), 201
+    
+@app.route('/profile/rsvps', methods=['GET'])
+def rsvplist():
+    user_id = session['user']['id']
+    rsvps = service.getrsvps(user_id)
+    if len(rsvps) == 0:
+        return jsonify({'status': 'error', 'message': 'No RSVPs found'}), 404
+    return jsonify(rsvps)
+
+@app.route('/profile/hosted', methods=['GET'])
+def rsvplist():
+    user_id = session['user']['id']
+    parties = service.gethostparties(user_id)
+    if len(parties) == 0:
+        return jsonify({'status': 'error', 'message': 'No Hosted parties found'}), 404
+    return jsonify(parties)
 
 @app.route('/logout')
 def logout():

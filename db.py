@@ -144,5 +144,19 @@ class Database:
     def create_mapping(self, party, user):
         self.execute('INSERT INTO mappingtable (party, attendees) VALUES (?, ?)', [party, user])
 
+    def get_host_events(self, uid):
+        data = self.select('SELECT * FROM party WHERE host=?', [uid])
+        return [{
+            'party_id': d[0],
+            'party_name': d[1],
+            'location': d[2],
+            'capacity': d[3],
+            'price': d[4],
+            'host': d[5],
+            'datetime': d[6],
+            'desc': d[7],
+            'image': d[8]
+        } for d in data]
+
     def close(self):
         self.conn.close()

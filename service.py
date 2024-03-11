@@ -71,4 +71,12 @@ def generaterandomimage():
 
 def createmapping(party, attendee):
     get_db().create_mapping(party, attendee)
+
+def getrsvps(uid):
+    rsvps = get_db().get_user_rsvp(uid)
+    return rsvps
+
+def gethostparties(uid):
+    parties = get_db().get_host_events(uid)
+    return parties
     

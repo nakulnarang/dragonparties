@@ -9,11 +9,11 @@ function displayFeaturedEvents() {
         { title: 'Acoustic Evenings', date: '2024-03-20', description: 'Unwind with soothing acoustic tunes.', time: '7 PM', location: 'The Garden', venue: 'Garden Stage', guestCount: '80' }
     ];
 
-    // const featuredEventsContainer = document.querySelector('.featured-events');
-    // featuredEvents.forEach((event, index) => {
-    //     const card = createEventCard(event, index);
-    //     featuredEventsContainer.appendChild(card);
-    // });
+    const featuredEventsContainer = document.querySelector('.featured-events');
+    featuredEvents.forEach((event, index) => {
+        const card = createEventCard(event, index);
+        featuredEventsContainer.appendChild(card);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {

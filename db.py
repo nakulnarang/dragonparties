@@ -93,7 +93,7 @@ class Database:
         
     
     def get_featured_events(self):
-        data = self.select('SELECT COUNT(*) as party_count, party FROM mappingtable ORDER BY party DESC LIMIT 3')
+        data = self.select('SELECT COUNT(attendees) as party_count, party FROM mappingtable GROUP BY party ORDER BY party_count DESC')
         return [{
             'party_count': d[0],
             'party': d[1]

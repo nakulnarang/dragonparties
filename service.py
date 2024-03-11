@@ -43,7 +43,7 @@ def getfeaturedevents():
     #featuredevents = get_db().get_party_rsvp_count()[0:3];
     #print(f"featured events: {featuredevents}")
     #print(type(featuredevents))
-    featuredevents = get_db().get_featured_events()
+    featuredevents = get_db().get_featured_events()[:3]
     fe = []
     for event in featuredevents:
         id = event['party']

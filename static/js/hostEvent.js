@@ -39,13 +39,14 @@ document.getElementById('eventForm').addEventListener('submit', function(e) {
         body: formData
       
     })
-    console.log(JSON.stringify(formData))
+
     .then(response => response.json())
     .then(data => {
         console.log(data);
     })
     .catch((error) => {
-        console.error('Error:', error);
+        // console.error('Error:', error);
+        
     });
 
     // Here you would typically send the formData to your backend using AJAX, Fetch API, or similar

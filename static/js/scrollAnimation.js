@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  checkFadeInSection();
     // Function to check if an element is in the viewport
     function checkVisibility(element) {
       var windowHeight = $(window).height(),

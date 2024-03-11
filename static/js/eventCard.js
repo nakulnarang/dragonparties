@@ -1,6 +1,6 @@
 export function createEventCard(event, index) {
     const card = document.createElement('div');
-    card.className = 'event-card fade-in-section';
+    card.className = 'event-card ';
 
     const randomImageNumber = Math.floor(Math.random() * 8) + 1; // 1 to 8
     const imageName = `card${randomImageNumber}.png`;
@@ -21,20 +21,19 @@ export function createEventCard(event, index) {
     <div class="card__scale-2"></div>
     <div class="card__default-content">
         <div class="card__shape-1">
-            <img src="../static/img/eventcards/${imageName}" alt="${event.title}">
+            <img src="../${event.image}" alt="${event.party_name}">
         </div>
         <div class="card__data">
-            <h2 class="card__title">${event.title}</h2>
-            <p class="card__description">${event.description}</p>
+            <h2 class="card__title">${event.party_name}</h2>
+            <p class="card__description">${event.desc}</p>
         </div>
     </div>
     <div class="card__hover-content">
         <ul>
             <li>Time: ${event.time}</li>
             <li>Location: ${event.location}</li>
-            <li>Entry Price: Jawdropping</li>
-            <li>Date: ${event.date}</li>
-            <li>Guest Count: ${event.guestCount}</li>
+            <li>Entry Price: ${event.price}</li>
+            <li>Date/Time: ${event.datetime}</li>
         </ul>
         <div class="button-container">
              <button class="card__rsvp-button">RSVP</button>

@@ -37,17 +37,17 @@ class Database:
 
     def get_all_events(self):
         data = self.select(
-            'SELECT * FROM party ORDER BY id ASC')
+            'SELECT * FROM party ORDER BY party_id ASC')
         return [{
             'party_id': d[0],
             'party_name': d[1],
-            'capacity': d[2],
-            'location': d[3],
-            'image': d[4],
-            'price': d[5],
-            'host': d[6],
-            'datetime': d[7],
-            'desc': d[8]
+            'location': d[2],
+            'capacity': d[3],
+            'price': d[4],
+            'host': d[5],
+            'datetime': d[6],
+            'desc': d[7],
+            'image': d[8]
         } for d in data]
     
     def get_events(self, ids):
@@ -112,8 +112,8 @@ class Database:
     def create_user(self, name, type, email, gender, username, encrypted_password):
         self.execute('INSERT INTO user (name, type, email, gender, username, encrypted_password) VALUES (?, ?, ?, ?, ?, ?)', [name, type, email, gender, username, encrypted_password])
 
-    def create_party(self, party_name, location, capacity, image, desc, price, host, datetime):
-        self.execute('INSERT INTO party (party_name, location, capacity, image, desc, price, host, datetime) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [party_name, location, capacity, image, desc, price, host, datetime])
+    def create_party(self, party_name, location, capacity,price, host, datetime, desc, image):
+        self.execute('INSERT INTO party (party_name, location, capacity,price, host, datetime, desc, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [party_name, location, capacity,price, host, datetime, desc, image])
 
     def get_guest_list(self, id):
         data = self.select('SELECT attendees FROM mappingtable WHERE party=?', [id])

@@ -1,29 +1,78 @@
 
 import { createEventCard } from '../js/eventCard.js';
-function fetchEvents() {
-    // Dummy data for now later implemennt fetching from the server
-    const events = [
-        { title: 'Event 1', date: '2024-03-01', description: 'sdfsdafsdfsd adsf asdf asdf asfd asd asda dasd asd asdf asd asd asd asda das asd asd asda sdfasd asdasd asda sdasd asdasd asdasdasd asdasd asdasc ASD AS ASD AD ' },
-        { title: 'Event 2', date: '2024-03-15', description: 'Description of Event 2. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.' },
-        { title: 'Event 3', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
-        { title: 'Event 4', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
-        { title: 'Event 5', date: '2024-06-20', description: 'Description of Event 5. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent.' },
-        { title: 'Event 6', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
-        { title: 'Event 7', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
-        { title: 'Event 8', date: '2024-06-20', description: 'Description of Event 5. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent.' },
-        { title: 'Event 9', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
-        { title: 'Event 10', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
-        { title: 'Event 11', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
-    ];
+// function fetchEvents() {
+//     // Dummy data for now later implemennt fetching from the server
+//     // const events = [
+//     //     { title: 'Event 1', date: '2024-03-01', description: 'sdfsdafsdfsd adsf asdf asdf asfd asd asda dasd asd asdf asd asd asd asda das asd asd asda sdfasd asdasd asda sdasd asdasd asdasdasd asdasd asdasc ASD AS ASD AD ' },
+//     //     { title: 'Event 2', date: '2024-03-15', description: 'Description of Event 2. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.' },
+//     //     { title: 'Event 3', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
+//     //     { title: 'Event 4', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
+//     //     { title: 'Event 5', date: '2024-06-20', description: 'Description of Event 5. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent.' },
+//     //     { title: 'Event 6', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
+//     //     { title: 'Event 7', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
+//     //     { title: 'Event 8', date: '2024-06-20', description: 'Description of Event 5. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent.' },
+//     //     { title: 'Event 9', date: '2024-04-10', description: 'Description of Event 3. Sed nisi. Nulla quis sem at nibh elementum imperdiet.' },
+//     //     { title: 'Event 10', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
+//     //     { title: 'Event 11', date: '2024-05-05', description: 'Description of Event 4. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.' },
+//     // ];
+//     const url = '/viewEvents';
+//     fetch(url, {
+//         method: 'GET',
+//         headers: {
+//             'Accept': 'application/json',  // Indicates that the client expects to receive JSON
+//         }
+//     })
+//     .then(response => {
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+//         return response.json();  // Assuming the server responds with JSON
+//     })
+//     .then(data => {
+//         console.log(data);  // Process the response data
 
-    const eventsGrid = document.getElementById('eventsGrid');
-    events.forEach((event, index) => {
-        const card = createEventCard(event, index);
-        eventsGrid.appendChild(card);
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+
+
+//     const eventsGrid = document.getElementById('eventsGrid');
+//     events.forEach((event, index) => {
+//         const card = createEventCard(event, index);
+//         eventsGrid.appendChild(card);
+//     });
+// }
+function fetchEvents() {
+    fetch('/getEvents')  // Make a GET request to the Flask route
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();  // Parse the JSON from the response
+    })
+    .then(events => {
+        console.log(events);
+        const eventsGrid = document.getElementById('eventsGrid');
+        events.forEach((event, index) => {
+            const card = createEventCard(event, index);  // Assuming createEventCard is a function you've defined to format your event data into HTML
+            eventsGrid.appendChild(card);
+        });
+        
+    })
+    .catch(error => {
+        console.error('Error fetching events:', error);
     });
+    // window.location.href = '/viewEvents';
+   
 }
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     fetchEvents();
+// });
 document.addEventListener('DOMContentLoaded', function() {
     fetchEvents();
+
     // check
     console.log('Events fetched');
 });

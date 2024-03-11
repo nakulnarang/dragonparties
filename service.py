@@ -21,8 +21,8 @@ def deleteuser():
 def edituser():
     pass
 
-def createparty(name, capacity, location, image, price, host, datetime, desc):
-    get_db().create_party(name, capacity, location, image, price, host, datetime, desc)
+def createparty(party_name, location, capacity,price, host, datetime, desc, image):
+    get_db().create_party(party_name, location, capacity,price, host, datetime, desc, image)
 
 def deleteparty():
     pass
@@ -46,7 +46,7 @@ def getfeaturedevents():
     return fe
 
 def getevents():
-    return get_db().get_events()
+    return get_db().get_all_events()
 
 def usernamecheck(username):
     user = get_db().get_user(username)

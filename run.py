@@ -182,14 +182,23 @@ def createevent():
             img_path = service.saveimage(image)
 
         if name and capacity and location and img_path and price and host and datetime and desc:
-            service.createparty(name, capacity, location, img_path, price, host, datetime, desc)
-            return redirect('/home')
+            service.createparty(name, location, capacity,price ,host, datetime, desc, img_path)
+            return jsonify({'status': 'success', 'message': 'Creating event successful'}), 200
         else:
+            print('Error: Missing parameters')
             return jsonify('Error: Missing parameters')
+
+@app.route('/getEvents')
+def getevents():
+    events = service.getevents()
+    # events_json = json.dumps(events)  # Convert the events data to a JSON string
+    return jsonify(events)
 
 @app.route('/viewEvents')
 def viewevents():
+    # events_json = json.dumps(events)  # Convert the events data to a JSON string
     return render_template('viewEvents.html')
+
 
 @app.route('/logout')
 def logout():

@@ -30,10 +30,9 @@ export function createEventCard(event, index) {
     </div>
     <div class="card__hover-content">
         <ul>
-            <li>Time: ${event.time}</li>
             <li>Location: ${event.location}</li>
-            <li>Entry Price: ${event.price}</li>
-            <li>Date/Time: ${event.datetime}</li>
+            <li>Entry Price: $${event.price}</li>
+            <li>Date: ${event.datetime}</li>
         </ul>
         <div class="button-container">
              <button class="card__rsvp-button">RSVP</button>

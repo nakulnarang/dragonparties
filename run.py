@@ -1,12 +1,17 @@
 import os
 import service
+from service import getlocations
 import random
 import base64
 from passlib.hash import pbkdf2_sha256
 from flask import Flask, g, json, render_template, request, redirect, session, jsonify, url_for
 from flask_mail import Mail, Message
 from flask_cors import CORS, cross_origin
+import folium
+from geopy.geocoders import ArcGIS
+from urllib.parse import urljoin
 
+nom = ArcGIS()
 app = Flask(__name__)
 # CORS(app)
 app.secret_key = b'demokeynotreal!'
@@ -17,6 +22,35 @@ app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 app.config['MAIL_USERNAME'] = 'teamdragonparties@gmail.com'
 app.config['MAIL_PASSWORD'] = 'bols vdqb noaq melw'
+
+def create_folium_map(locations):
+     # Create Folium map centered at the first location
+     my_map = folium.Map(location=[locations[0].latitude, locations[0].longitude], zoom_start=12, tiles='CartoDB dark_matter')
+    
+     # Add markers for each location
+     for location in locations:
+         address = location.address if location.address else "Unknown Address"
+         add_marker(my_map, location, address)
+
+     # Save the map as an HTML string
+     my_map.get_root().width = '1000px'
+     my_map.get_root().height = "500px"
+     iframe = my_map.get_root()._repr_html_()
+     #map_html = my_map.get_root().render()
+
+     return iframe
+
+
+
+def add_marker(my_map, location, popup_text):  
+      
+    folium.Marker(
+        location=[location.latitude, location.longitude],
+        popup=popup_text,
+        icon=folium.Icon(color='blue')        
+    ).add_to(my_map)
+
+
 
 mail = Mail(app)
 @app.route('/send-email', methods=['POST'])
@@ -152,8 +186,18 @@ def home():
         featuredevents = service.getfeaturedevents()
         print(f"session after logging in: {session['user']}")
         print(f"featured events: {featuredevents}")
+        
+        locations = getlocations()
+        all_coordinates = []
+        
+        for location in locations:
+            coordinates = nom.geocode(location)
+            all_coordinates.append(coordinates)
+            
+        iframe = create_folium_map(all_coordinates)
+        return render_template('home.html', iframe= iframe)
         #service.getmaps()
-        return render_template('home.html')
+        
     else:
         return jsonify('Error: User not authenticated')
         

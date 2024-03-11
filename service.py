@@ -12,6 +12,12 @@ def get_db():
 def getuser(email):
     return get_db().get_user(email)
 
+def getlocations():
+    return get_db().get_party_locations()
+
+def getimages():
+    return get_db().get_party_images()
+
 def createuser(name, type, email, gender, username, encrypted_password):
     get_db().create_user(name, type, email, gender, username, encrypted_password)
 
